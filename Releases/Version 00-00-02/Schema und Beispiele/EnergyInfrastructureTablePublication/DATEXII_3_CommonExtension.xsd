@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:comx="http://datex2.eu/schema/3/commonExtension" version="3.5" targetNamespace="http://datex2.eu/schema/3/commonExtension" xmlns:com="http://datex2.eu/schema/3/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://datex2.eu/schema/3/common" schemaLocation="DATEXII_3_Common.xsd" />
+  <xs:complexType name="EmissionsExtension">
+    <xs:annotation>
+      <xs:documentation>An extension for the Emissions class to provide a comparison operator.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="comparisonOperator" type="com:_ComparisonOperatorEnum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A comparison operator for the applicable emission classifications in correspondence to the specified value. The comparison applies to the Roman- or Arabic-numbered portion (e.g. euro6 &gt; euro5b), but not crosswise (e.g. euro6 cannot be compared to euroV).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
