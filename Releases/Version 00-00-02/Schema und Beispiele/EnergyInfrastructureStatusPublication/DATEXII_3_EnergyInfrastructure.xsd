@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:egi="http://datex2.eu/schema/3/energyInfrastructure" version="3.5" targetNamespace="http://datex2.eu/schema/3/energyInfrastructure" xmlns:fac="http://datex2.eu/schema/3/facilities" xmlns:com="http://datex2.eu/schema/3/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://datex2.eu/schema/3/common" schemaLocation="DATEXII_3_Common.xsd" />
+  <xs:import namespace="http://datex2.eu/schema/3/facilities" schemaLocation="DATEXII_3_Facilities.xsd" />
+  <xs:complexType name="_EnergyInfrastructureTableVersionedReference">
+    <xs:complexContent>
+      <xs:extension base="com:VersionedReference">
+        <xs:attribute name="targetClass" type="xs:string" use="required" fixed="egi:EnergyInfrastructureTable" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="_EnergyRateReference">
+    <xs:complexContent>
+      <xs:extension base="com:Reference">
+        <xs:attribute name="targetClass" type="xs:string" use="required" fixed="egi:EnergyRate" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="_PriceTypeEnum">
+    <xs:simpleContent>
+      <xs:extension base="egi:PriceTypeEnum">
+        <xs:attribute name="_extendedValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="_RatePolicyEnum">
+    <xs:simpleContent>
+      <xs:extension base="egi:RatePolicyEnum">
+        <xs:attribute name="_extendedValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="_RefillPointStatusEnum">
+    <xs:simpleContent>
+      <xs:extension base="egi:RefillPointStatusEnum">
+        <xs:attribute name="_extendedValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="_ServiceTypeEnum">
+    <xs:simpleContent>
+      <xs:extension base="egi:ServiceTypeEnum">
+        <xs:attribute name="_extendedValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ElectricChargingPointStatus">
+    <xs:annotation>
+      <xs:documentation>Dynamic information on the status of the charging point.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="egi:RefillPointStatus">
+        <xs:sequence>
+          <xs:element name="remainingChargingTime" type="com:Seconds" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>If known, the approximate remaining charging time for the current vehicle on this refill point can be specified.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="currentVoltage" type="egi:Volt" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Current used voltage.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="currentChargingPower" type="egi:Watt" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The current power in Watts.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="nextAvailableChargingSlots" type="com:DateTime" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>One or more points of time in the future, at which the charging point will be available (not occupied and not reserved).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="_electricChargingPointStatusExtension" type="com:_ExtensionType" minOccurs="0" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnergyInfrastructureSiteStatus">
+    <xs:annotation>
+      <xs:documentation>Dynamic information on the status of the energy supplying site</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fac:FacilityStatus">
+        <xs:sequence>
+          <xs:element name="availableCarParkingPlaces" type="com:NonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Parking places available for cars.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="availableTruckParkingPlaces" type="com:NonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Parking places available for trucks.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="energyInfrastructureStationStatus" type="egi:EnergyInfrastructureStationStatus" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Specify the status of a charging station with dynamic information.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="serviceType" type="egi:ServiceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>The service type for the site. If no period is given, the currently available service is meant.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="_energyInfrastructureSiteStatusExtension" type="com:_ExtensionType" minOccurs="0" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnergyInfrastructureStationStatus">
+    <xs:annotation>
+      <xs:documentation>Dynamic information on the status of the station.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fac:FacilityStatus">
+        <xs:sequence>
+          <xs:element name="isAvailable" type="com:Boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Information whether the specific station is available or not. It might be unavailable for example because of a fault, damage or maintenance. It does not inform, if the corresponding refill points are currently occupied or not.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="refillPointStatus" type="egi:RefillPointStatus" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Specify the status of a refill point with dynamic information.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="serviceType" type="egi:ServiceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>The service type for the station. If no period is given, the currently available service is meant.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="energyRateUpdate" type="egi:EnergyRateUpdate" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="_energyInfrastructureStationStatusExtension" type="com:_ExtensionType" minOccurs="0" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnergyInfrastructureStatusPublication">
+    <xs:annotation>
+      <xs:documentation>Dynamic information on the status of energy supplying sites.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="com:PayloadPublication">
+        <xs:sequence>
+          <xs:element name="tableReference" type="egi:_EnergyInfrastructureTableVersionedReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Reference to static tables containing the sites referenced in this publication.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="headerInformation" type="com:HeaderInformation" minOccurs="0" />
+          <xs:element name="energyInfrastructureSiteStatus" type="egi:EnergyInfrastructureSiteStatus" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="_energyInfrastructureStatusPublicationExtension" type="com:_ExtensionType" minOccurs="0" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnergyPrice">
+    <xs:annotation>
+      <xs:documentation>A price definition for energy refueling</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="priceType" type="egi:_PriceTypeEnum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The type of price for the energy supply</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" type="fac:AmountOfMoney" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The price for the energy according to the price type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="taxIncluded" type="com:Boolean" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>[TRUE] Indication that tax to be applied is included [FALSE] indicates that the tax is added additionally to the total.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="taxRate" type="com:Percentage" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The percentage rate of tax to be applied.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="additionalInformation" type="com:MultilingualString" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Free text field for additional information regarding the price.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="overallPeriod" type="com:OverallPeriod" minOccurs="0" />
+      <xs:element name="_energyPriceExtension" type="com:_ExtensionType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnergyRate">
+    <xs:annotation>
+      <xs:documentation>A rate dedicated for Energy.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ratePolicy" type="egi:_RatePolicyEnum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Indication if contract based or ad hoc price</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="lastUpdated" type="com:DateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The date/time at which this information was last updated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="applicableCurrency" type="fac:CurrencyCode" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>A general information on the applicable monetary currency.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="rateName" type="com:MultilingualString" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A name for this rate, for example the name of the specific energy contract.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="combinationWithParkingFee" type="com:Boolean" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Indicates whether vehicle charging and parking are included in one combined fee</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="maximumDeliveryFee" type="fac:AmountOfMoney" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A maximum delivery fee.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minimumDeliveryFee" type="fac:AmountOfMoney" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A minimum delivery fee.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="discount" type="com:Percentage" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Discount indicated in %</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="additionalInformation" type="com:MultilingualString" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Free text field for additional information regarding the energy rates.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="paymentMethod" type="fac:PaymentMethod" minOccurs="0" />
+      <xs:element name="overallPeriod" type="com:OverallPeriod" minOccurs="0" />
+      <xs:element name="_energyRateExtension" type="com:_ExtensionType" minOccurs="0" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="EnergyRateUpdate">
+    <xs:annotation>
+      <xs:documentation>Updates a rate defined in the static part of the model.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="lastUpdated" type="com:DateTime" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The date/time at which this information was last updated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="energyRateReference" type="egi:_EnergyRateReference" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Specifies the EnergyRate that is updated here.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="additionalInformation" type="com:MultilingualString" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Free text field for additional information regarding the energy rates.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="energyPrice" type="egi:EnergyPrice" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="_energyRateUpdateExtension" type="com:_ExtensionType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PlannedRefillPointStatus">
+    <xs:annotation>
+      <xs:documentation>Planned status information for a refill point, for example reservatons</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="status" type="egi:_RefillPointStatusEnum" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Status of the refill point</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="overallPeriod" type="com:OverallPeriod" />
+      <xs:element name="_plannedRefillPointStatusExtension" type="com:_ExtensionType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PriceTypeEnum">
+    <xs:annotation>
+      <xs:documentation>The type of price for energy.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pricePerMinute">
+        <xs:annotation>
+          <xs:documentation>The given price is per minute of charging.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="pricePerKWh">
+        <xs:annotation>
+          <xs:documentation>The given price is per kWh of electric energy.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="basePrice">
+        <xs:annotation>
+          <xs:documentation>The given price is a base price, which has to be added.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="flatRate">
+        <xs:annotation>
+          <xs:documentation>The given price is a flatrate price, independent of the fueled amunt.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="free">
+        <xs:annotation>
+          <xs:documentation>Charging or refueling is free.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="other">
+        <xs:annotation>
+          <xs:documentation>Other method of pricing.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="_extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RatePolicyEnum">
+    <xs:annotation>
+      <xs:documentation>Contract based or ad hoc prices for energy</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="contract">
+        <xs:annotation>
+          <xs:documentation>A contract defines the pricing.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="adHoc">
+        <xs:annotation>
+          <xs:documentation>Prices are for ad hoc refueling.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="_extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RefillPointStatus">
+    <xs:annotation>
+      <xs:documentation>Dynamic information on the status of the refill point.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fac:FacilityStatus">
+        <xs:sequence>
+          <xs:element name="status" type="egi:_RefillPointStatusEnum" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Status of the refill point</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="unitsInStock" type="egi:Units" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Amount of delivery units still in stock (with delivery units as defined in the static information model)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="energyRateUpdate" type="egi:EnergyRateUpdate" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="waitingTime" type="fac:DurationValue" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Estimated waiting time for customers without reservation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="plannedRefillPointStatus" type="egi:PlannedRefillPointStatus" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="_refillPointStatusExtension" type="com:_ExtensionType" minOccurs="0" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="RefillPointStatusEnum">
+    <xs:annotation>
+      <xs:documentation>The status of a refill point.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="available">
+        <xs:annotation>
+          <xs:documentation>The refill point is not occupied, has got enough energy resources and can be used.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="blocked">
+        <xs:annotation>
+          <xs:documentation>The refill point is not accessible because of a physical barrier, e.g. a car.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="charging">
+        <xs:annotation>
+          <xs:documentation>The refill point is currently in use for charging.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="faulted">
+        <xs:annotation>
+          <xs:documentation>The refill point has got a fault.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="inoperative">
+        <xs:annotation>
+          <xs:documentation>The refill point is not yet active or it is no longer available (deleted).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="occupied">
+        <xs:annotation>
+          <xs:documentation>The refill point is in use, this might include vehicle charging activity.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="outOfOrder">
+        <xs:annotation>
+          <xs:documentation>The refill point is currently out of order.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="outOfStock">
+        <xs:annotation>
+          <xs:documentation>The refill point is out of stock, i.e. energy resources are empty.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="planned">
+        <xs:annotation>
+          <xs:documentation>The refill point is planned, will be operating soon.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="removed">
+        <xs:annotation>
+          <xs:documentation>The refill point was discontinued/removed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="reserved">
+        <xs:annotation>
+          <xs:documentation>The refill point is reserved by a customer, i.e. it is not available for other users right now.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="unavailable">
+        <xs:annotation>
+          <xs:documentation>There is no energy available at this refill point. This could be because of a failure or damage or a longer lasting delivery failure (note that there is a literal 'outOfStock' for a short-term shortage).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="unknown">
+        <xs:annotation>
+          <xs:documentation>The status of the refill point is unknown (can also be offline).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="_extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ServiceType">
+    <xs:annotation>
+      <xs:documentation>A specification of service types for the fuelling/charging and payment process</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="serviceType" type="egi:_ServiceTypeEnum" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Information on different service types for the fuelling/charging and payment process.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="overallPeriod" type="com:OverallPeriod" minOccurs="0" />
+      <xs:element name="_serviceTypeExtension" type="com:_ExtensionType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ServiceTypeEnum">
+    <xs:annotation>
+      <xs:documentation>A table of different service levels to be expected for fuelling/charging and payment.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pyhsicalAttendance">
+        <xs:annotation>
+          <xs:documentation>Presence of physical persons attending the recharging or refuelling station.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="unattended">
+        <xs:annotation>
+          <xs:documentation>Unattended station, fuelling and payment to be done without assistance.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="_extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Units">
+    <xs:annotation>
+      <xs:documentation>Amount in units, which are specified by unitTypeEnum.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="com:Float" />
+  </xs:simpleType>
+  <xs:simpleType name="Volt">
+    <xs:annotation>
+      <xs:documentation>Volt.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="com:Float" />
+  </xs:simpleType>
+  <xs:simpleType name="Watt">
+    <xs:annotation>
+      <xs:documentation>Watt.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="com:Float" />
+  </xs:simpleType>
+</xs:schema>
