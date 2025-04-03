@@ -9,4 +9,4 @@ Nutzer und Passwort: datex
 
 Hinweis: 
 
-JSON Delta-Datenlieferungen könnenerst ab frühestens ab 11.04.25 auf der Mobilithek getestet werden . 
+JSON Delta-Datenlieferungen können erst ab frühestens 11.04.25 auf der Mobilithek getestet werden . 
