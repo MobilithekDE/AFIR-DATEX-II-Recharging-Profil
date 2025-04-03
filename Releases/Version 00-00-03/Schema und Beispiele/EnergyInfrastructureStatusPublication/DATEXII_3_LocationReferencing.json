@@ -1,0 +1,1825 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "AltitudeAccuracyEnum": {
+      "title": "AltitudeAccuracyEnum",
+      "description": "Coded level of vertical accuracy",
+      "type": "string",
+      "enum": [
+        "equalToOrLessThan1Centimetre",
+        "equalToOrLessThan2Centimetres",
+        "equalToOrLessThan5Centimetres",
+        "equalToOrLessThan10Centimetres",
+        "equalToOrLessThan20Centimetres",
+        "equalToOrLessThan50Centimetres",
+        "equalToOrLessThan1Metre",
+        "equalToOrLessThan2Metres",
+        "equalToOrLessThan5Metres",
+        "equalToOrLessThan10Metres",
+        "equalToOrLessThan20Metres",
+        "equalToOrLessThan50Metres",
+        "equalToOrLessThan100Metres",
+        "equalToOrLessThan200Metres",
+        "extendedG"
+      ]
+    },
+    "AltitudeAccuracyEnumG": {
+      "title": "AltitudeAccuracyEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AltitudeAccuracyEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AltitudeConfidence": {
+      "title": "AltitudeConfidence",
+      "description": "Evaluation of the altitude confidence assessed according to ETSI ISO 102894-2",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "altitudeAccuracyCodedValue": {
+          "title": "altitudeAccuracyCodedValue",
+          "description": "Absolute accuracy of reported value of a geographical point for a confidence level expressed by a coded scale.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AltitudeAccuracyEnumG"
+        },
+        "altitudeAccuracyCodedError": {
+          "title": "altitudeAccuracyCodedError",
+          "description": "Error code in case the altitude confidence is out of range or cannot be determined",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionConfidenceCodedErrorEnumG"
+        },
+        "locAltitudeConfidenceExtensionG": {
+          "title": "locAltitudeConfidenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "AreaLocation": {
+      "title": "AreaLocation",
+      "description": "Location representing a geographic or geometric defined area which may be qualified by height information to provide additional geospatial discrimination (e.g. for snow in an area but only above a certain altitude).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "areasAtWhichApplicable": {
+          "title": "areasAtWhichApplicable",
+          "description": "Places, in generic terms, at which the corresponding information applies.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AreaPlacesEnumG"
+        },
+        "externalReferencing": {
+          "title": "externalReferencing",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/ExternalReferencing"
+          },
+          "minItems": 0
+        },
+        "coordinatesForDisplay": {
+          "title": "coordinatesForDisplay",
+          "description": "Coordinates that may be used by clients for visual display on user interfaces.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "namedArea": {
+          "title": "namedArea",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaG"
+        },
+        "gmlMultiPolygon": {
+          "title": "gmlMultiPolygon",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlMultiPolygon"
+        },
+        "openlrAreaLocationReference": {
+          "title": "openlrAreaLocationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrAreaLocationReferenceG"
+        },
+        "locLocationReferenceExtensionG": {
+          "title": "locLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationExtensionG": {
+          "title": "locLocationExtensionG",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationExtensionTypeG"
+        },
+        "locAreaLocationExtensionG": {
+          "title": "locAreaLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "AreaPlacesEnum": {
+      "title": "AreaPlacesEnum",
+      "description": "Type of area place(s)",
+      "type": "string",
+      "enum": [
+        "atBorders",
+        "atHighAltitudes",
+        "inBuiltUpAreas",
+        "inForestedAreas",
+        "inGalleries",
+        "inLowLyingAreas",
+        "inRuralAreas",
+        "inShadedAreas",
+        "inTheInnerCityAreas",
+        "inTunnels",
+        "onBridges",
+        "onDownhillSections",
+        "onElevatedSections",
+        "onEnteringOrLeavingTunnels",
+        "onFlyovers",
+        "onPasses",
+        "onUndergroundSections",
+        "onUnderpasses",
+        "extendedG"
+      ]
+    },
+    "AreaPlacesEnumG": {
+      "title": "AreaPlacesEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AreaPlacesEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ExternalReferencing": {
+      "title": "ExternalReferencing",
+      "description": "A location defined by reference to an external/other referencing system.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "externalLocationCode": {
+          "title": "externalLocationCode",
+          "description": "A code in the external referencing system which defines the location.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "externalReferencingSystem": {
+          "title": "externalReferencingSystem",
+          "description": "Identification of the external/other location referencing system.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "locExternalReferencingExtensionG": {
+          "title": "locExternalReferencingExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "externalReferencingSystem",
+        "externalLocationCode"
+      ]
+    },
+    "GmlLinearRing": {
+      "title": "GmlLinearRing",
+      "description": "Closed line string not self-intersecting (i.e. having as last point the first point)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "srsDimension": {
+          "title": "srsDimension",
+          "description": "Provides the size of the tuple of coordinates of each point. This number is 2 or 3. By default when omitted the dimension shall be interpreted as 2.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "srsName": {
+          "title": "srsName",
+          "description": "Specifies the Coordinate Reference System (CRS) used to interpret the coordinates in this GmlLineString",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "posList": {
+          "title": "posList",
+          "description": "List of coordinate tuples define the geometry of this GmlLineString. There must be at least 2 tuples of coordinates. Form depends on coordinate reference system; typical form is space-separated pairs of latitude and longitude.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlPosList"
+        },
+        "locGmlLineStringExtensionG": {
+          "title": "locGmlLineStringExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locGmlLinearRingExtensionG": {
+          "title": "locGmlLinearRingExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "posList"
+      ]
+    },
+    "GmlLineString": {
+      "title": "GmlLineString",
+      "description": "Line string based on GML (EN ISO 19136) definition: a curve defined by a series of two or more coordinate tuples. Unlike GML may be self-intersecting. If srsName attribute is not present, posList is assumed to use \"ETRS89-LatLonh\" reference system.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "srsDimension": {
+          "title": "srsDimension",
+          "description": "Provides the size of the tuple of coordinates of each point. This number is 2 or 3. By default when omitted the dimension shall be interpreted as 2.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "srsName": {
+          "title": "srsName",
+          "description": "Specifies the Coordinate Reference System (CRS) used to interpret the coordinates in this GmlLineString",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "posList": {
+          "title": "posList",
+          "description": "List of coordinate tuples define the geometry of this GmlLineString. There must be at least 2 tuples of coordinates. Form depends on coordinate reference system; typical form is space-separated pairs of latitude and longitude.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlPosList"
+        },
+        "locGmlLineStringExtensionG": {
+          "title": "locGmlLineStringExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "posList"
+      ]
+    },
+    "GmlLineStringG": {
+      "title": "GmlLineStringG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locGmlLineString": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLineString"
+        },
+        "locGmlLinearRing": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLinearRing"
+        }
+      }
+    },
+    "GmlMultiPolygon": {
+      "title": "GmlMultiPolygon",
+      "description": "An area defined by a set of polygons acording to GML (EN ISO 19136).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gmlAreaName": {
+          "title": "gmlAreaName",
+          "description": "Name of the multi-polygon area",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "gmlPolygon": {
+          "title": "gmlPolygon",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlPolygon"
+          },
+          "minItems": 1
+        },
+        "locGmlMultiPolygonExtensionG": {
+          "title": "locGmlMultiPolygonExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "gmlPolygon"
+      ]
+    },
+    "GmlPolygon": {
+      "title": "GmlPolygon",
+      "description": "Planar surface defined by 1 exterior boundary and 0 or more interior boundaries",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exterior": {
+          "title": "exterior",
+          "description": "A boundary of a polygonal surface consisting of a ring i.e. in the normal 2D case, a closed polygonal line distinguished as exterior. Such a polygonal line has at least 4 pairs of coordinates",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLinearRing"
+        },
+        "interior": {
+          "title": "interior",
+          "description": "A boundary of internal patches of a polygonal surface consisting of a ring feature",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLinearRing"
+          },
+          "minItems": 0
+        },
+        "locGmlPolygonExtensionG": {
+          "title": "locGmlPolygonExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "exterior"
+      ]
+    },
+    "GmlPosList": {
+      "title": "GmlPosList",
+      "description": "List of coordinates, space-separated, within the same coordinate reference system, defining a geometric entity. Modelled on DirectPositionListType in GML (EN ISO 19136), but constrained to represent a 2D or 3D polyline.",
+      "$ref": "DATEXII_3_Common.json#/definitions/LongString",
+      "pattern": "[-+]?[0-9]*\\.?[0-9]+(\\s[-+]?[0-9]*\\.?[0-9]+){3,}"
+    },
+    "HeightCoordinate": {
+      "title": "HeightCoordinate",
+      "description": "Third coordinate for points defined geodetically",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "heightValue": {
+          "title": "heightValue",
+          "description": "Value in metres for the height measured vertically at to the planar coordinates the point corresponding.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "heightType": {
+          "title": "heightType",
+          "description": "Type of measured height.When it is omitted it is supposed to be the ellipsoidal height.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/HeightTypeEnumG"
+        },
+        "altitudeConfidence": {
+          "title": "altitudeConfidence",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AltitudeConfidence"
+        },
+        "verticalPositionAccuracy": {
+          "title": "verticalPositionAccuracy",
+          "description": "Defines the vertical position accuracy according to EN16803-1",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionAccuracy"
+        },
+        "locHeightCoordinateExtensionG": {
+          "title": "locHeightCoordinateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "heightValue"
+      ]
+    },
+    "HeightTypeEnum": {
+      "title": "HeightTypeEnum",
+      "description": "Coded value for type of height",
+      "type": "string",
+      "enum": [
+        "ellipsoidalHeight",
+        "gravityRelatedHeight",
+        "relativeHeight",
+        "extendedG"
+      ]
+    },
+    "HeightTypeEnumG": {
+      "title": "HeightTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/HeightTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "IsoNamedArea": {
+      "title": "IsoNamedArea",
+      "description": "The ISO 3166-2 representation for the named area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "areaName": {
+          "title": "areaName",
+          "description": "The name of the area.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "namedAreaType": {
+          "title": "namedAreaType",
+          "description": "The type of the area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaTypeEnumG"
+        },
+        "country": {
+          "title": "country",
+          "description": "EN ISO 3166-1 two-character country code.",
+          "$ref": "DATEXII_3_Common.json#/definitions/CountryCode"
+        },
+        "subdivisionType": {
+          "title": "subdivisionType",
+          "description": "The ISO 3166-2 subdivison type for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/SubdivisionTypeEnumG"
+        },
+        "subdivisionCode": {
+          "title": "subdivisionCode",
+          "description": "The second part of an ISO 3166-2 subdivision code for the named area, which may be used along with the country attribute from the parent class to make a full ISO 3166-2 subdivision code.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/SubdivisionCode"
+        },
+        "comNamedAreaExtensionG": {
+          "title": "comNamedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locNamedAreaExtensionG": {
+          "title": "locNamedAreaExtensionG",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaExtensionTypeG"
+        },
+        "locIsoNamedAreaExtensionG": {
+          "title": "locIsoNamedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "areaName",
+        "subdivisionType",
+        "subdivisionCode"
+      ]
+    },
+    "LocationByReference": {
+      "title": "LocationByReference",
+      "description": "A location defined by reference to a predefined location.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "predefinedLocationReference": {
+          "title": "predefinedLocationReference",
+          "description": "A reference to a versioned predefined location.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PredefinedLocationVersionedReferenceG"
+        },
+        "externalReferencing": {
+          "title": "externalReferencing",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/ExternalReferencing"
+          },
+          "minItems": 0
+        },
+        "coordinatesForDisplay": {
+          "title": "coordinatesForDisplay",
+          "description": "Coordinates that may be used by clients for visual display on user interfaces.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "locLocationReferenceExtensionG": {
+          "title": "locLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationExtensionG": {
+          "title": "locLocationExtensionG",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationExtensionTypeG"
+        },
+        "locLocationByReferenceExtensionG": {
+          "title": "locLocationByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "predefinedLocationReference"
+      ]
+    },
+    "LocationExtensionTypeG": {
+      "title": "LocationExtensionTypeG",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "FacilityLocation": {
+          "title": "FacilityLocation",
+          "$ref": "DATEXII_3_LocationExtension.json#/definitions/FacilityLocation"
+        }
+      }
+    },
+    "LocationG": {
+      "title": "LocationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locPointLocation": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointLocation"
+        },
+        "locLocationByReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationByReference"
+        },
+        "locAreaLocation": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AreaLocation"
+        }
+      }
+    },
+    "LocationGroupByList": {
+      "title": "LocationGroupByList",
+      "description": "A group of (i.e. more than one) physically separate locations which have no specific order and where each location is explicitly listed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locationContainedInGroup": {
+          "title": "locationContainedInGroup",
+          "description": "A location contained in a non-ordered group of locations.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationG"
+          },
+          "minItems": 2
+        },
+        "locLocationReferenceExtensionG": {
+          "title": "locLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationGroupExtensionG": {
+          "title": "locLocationGroupExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationGroupByListExtensionG": {
+          "title": "locLocationGroupByListExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "locationContainedInGroup"
+      ]
+    },
+    "LocationGroupByReference": {
+      "title": "LocationGroupByReference",
+      "description": "A group of (i.e. more than one) physically separate locations which have no specific order that are defined by reference to a predefined non ordered location group.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "predefinedLocationGroupReference": {
+          "title": "predefinedLocationGroupReference",
+          "description": "A reference to a versioned instance of a predefined location group as specified in a PredefinedLocationsPublication.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PredefinedLocationGroupVersionedReferenceG"
+        },
+        "locLocationReferenceExtensionG": {
+          "title": "locLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationGroupExtensionG": {
+          "title": "locLocationGroupExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationGroupByReferenceExtensionG": {
+          "title": "locLocationGroupByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "predefinedLocationGroupReference"
+      ]
+    },
+    "LocationGroupG": {
+      "title": "LocationGroupG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locLocationGroupByList": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationGroupByList"
+        },
+        "locLocationGroupByReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationGroupByReference"
+        }
+      }
+    },
+    "LocationReferenceG": {
+      "title": "LocationReferenceG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locLocationGroupByList": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationGroupByList"
+        },
+        "locLocationGroupByReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationGroupByReference"
+        },
+        "locPointLocation": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointLocation"
+        },
+        "locLocationByReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationByReference"
+        },
+        "locAreaLocation": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/AreaLocation"
+        }
+      }
+    },
+    "NamedArea": {
+      "title": "NamedArea",
+      "description": "An area defined by a name and/or in terms of known boundaries, such as country or county boundaries or allocated control area of particular authority. The attributes do not form a union; instead, the smallest intersection forms the resulting area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "areaName": {
+          "title": "areaName",
+          "description": "The name of the area.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "namedAreaType": {
+          "title": "namedAreaType",
+          "description": "The type of the area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaTypeEnumG"
+        },
+        "country": {
+          "title": "country",
+          "description": "EN ISO 3166-1 two-character country code.",
+          "$ref": "DATEXII_3_Common.json#/definitions/CountryCode"
+        },
+        "comNamedAreaExtensionG": {
+          "title": "comNamedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locNamedAreaExtensionG": {
+          "title": "locNamedAreaExtensionG",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaExtensionTypeG"
+        }
+      },
+      "required": [
+        "areaName"
+      ]
+    },
+    "NamedAreaExtensionTypeG": {
+      "title": "NamedAreaExtensionTypeG",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "NamedAreaExtended": {
+          "title": "NamedAreaExtended",
+          "$ref": "DATEXII_3_LocationExtension.json#/definitions/NamedAreaExtended"
+        }
+      }
+    },
+    "NamedAreaG": {
+      "title": "NamedAreaG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locNamedArea": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedArea"
+        },
+        "locNutsNamedArea": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsNamedArea"
+        },
+        "locIsoNamedArea": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/IsoNamedArea"
+        }
+      }
+    },
+    "NamedAreaTypeEnum": {
+      "title": "NamedAreaTypeEnum",
+      "description": "Types of areas.",
+      "type": "string",
+      "enum": [
+        "applicationRegion",
+        "continent",
+        "country",
+        "countryGroup",
+        "carParkArea",
+        "carpoolArea",
+        "fuzzyArea",
+        "industrialArea",
+        "lake",
+        "meteorologicalArea",
+        "metropolitanArea",
+        "municipality",
+        "parkAndRideSite",
+        "ruralCounty",
+        "sea",
+        "touristArea",
+        "trafficArea",
+        "urbanCounty",
+        "order1AdministrativeArea",
+        "order2AdministrativeArea",
+        "order3AdministrativeArea",
+        "order4AdministrativeArea",
+        "order5AdministrativeArea",
+        "policeForceControlArea",
+        "roadOperatorControlArea",
+        "waterArea",
+        "extendedG"
+      ]
+    },
+    "NamedAreaTypeEnumG": {
+      "title": "NamedAreaTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "NetworkLocationG": {
+      "title": "NetworkLocationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locPointLocation": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointLocation"
+        }
+      }
+    },
+    "NutsCode": {
+      "title": "NutsCode",
+      "description": "A NUTS code (Nomenclature of territorial units for statistics).",
+      "$ref": "DATEXII_3_Common.json#/definitions/String",
+      "maxLength": 5
+    },
+    "NutsCodeTypeEnum": {
+      "title": "NutsCodeTypeEnum",
+      "description": "Types of NUTS codes (Nomenclature of territorial units for statistics) including LAU codes (Local Administrative Units).",
+      "type": "string",
+      "enum": [
+        "nuts1Code",
+        "nuts2Code",
+        "nuts3Code",
+        "lau1Code",
+        "lau2Code",
+        "extendedG"
+      ]
+    },
+    "NutsCodeTypeEnumG": {
+      "title": "NutsCodeTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsCodeTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "NutsNamedArea": {
+      "title": "NutsNamedArea",
+      "description": "The NUTS-Code representation for the named area (Nomenclature of territorial units for statistics) or its LAU code representation (Local Administrative Unit).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "areaName": {
+          "title": "areaName",
+          "description": "The name of the area.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "namedAreaType": {
+          "title": "namedAreaType",
+          "description": "The type of the area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaTypeEnumG"
+        },
+        "country": {
+          "title": "country",
+          "description": "EN ISO 3166-1 two-character country code.",
+          "$ref": "DATEXII_3_Common.json#/definitions/CountryCode"
+        },
+        "nutsCodeType": {
+          "title": "nutsCodeType",
+          "description": "The NUTS code type for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsCodeTypeEnumG"
+        },
+        "nutsCode": {
+          "title": "nutsCode",
+          "description": "The NUTS code for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsCode"
+        },
+        "comNamedAreaExtensionG": {
+          "title": "comNamedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locNamedAreaExtensionG": {
+          "title": "locNamedAreaExtensionG",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedAreaExtensionTypeG"
+        },
+        "locNutsNamedAreaExtensionG": {
+          "title": "locNutsNamedAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "areaName",
+        "nutsCodeType",
+        "nutsCode"
+      ]
+    },
+    "OpenlrAreaLocationReferenceG": {
+      "title": "OpenlrAreaLocationReferenceG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locOpenlrGridLocationReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrGridLocationReference"
+        },
+        "locOpenlrCircleLocationReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrCircleLocationReference"
+        },
+        "locOpenlrClosedLineLocationReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrClosedLineLocationReference"
+        },
+        "locOpenlrRectangleLocationReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrRectangleLocationReference"
+        },
+        "locOpenlrPolygonLocationReference": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPolygonLocationReference"
+        }
+      }
+    },
+    "OpenlrBasePointLocationG": {
+      "title": "OpenlrBasePointLocationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locOpenlrPointAlongLine": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPointAlongLine"
+        },
+        "locOpenlrPoiWithAccessPoint": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPoiWithAccessPoint"
+        }
+      }
+    },
+    "OpenlrBaseReferencePointG": {
+      "title": "OpenlrBaseReferencePointG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locOpenlrLocationReferencePoint": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLocationReferencePoint"
+        },
+        "locOpenlrLastLocationReferencePoint": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLastLocationReferencePoint"
+        }
+      }
+    },
+    "OpenlrCircleLocationReference": {
+      "title": "OpenlrCircleLocationReference",
+      "description": "The OpenLR method of area definition by providing a center position and a radius",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrRadius": {
+          "title": "openlrRadius",
+          "description": "The radius of the corresponding circular area.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsNonNegativeInteger"
+        },
+        "openlrGeoCoordinate": {
+          "title": "openlrGeoCoordinate",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrGeoCoordinate"
+        },
+        "locOpenlrAreaLocationReferenceExtensionG": {
+          "title": "locOpenlrAreaLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrCircleLocationReferenceExtensionG": {
+          "title": "locOpenlrCircleLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrRadius",
+        "openlrGeoCoordinate"
+      ]
+    },
+    "OpenlrClosedLineLocationReference": {
+      "title": "OpenlrClosedLineLocationReference",
+      "description": "The OpenLR method of area definition by providing a closed path (i.e. a circuit) in the road network.  The boundary always consists of road segments",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrLocationReferencePoint": {
+          "title": "openlrLocationReferencePoint",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLocationReferencePoint"
+          },
+          "minItems": 1
+        },
+        "openlrLastLine": {
+          "title": "openlrLastLine",
+          "description": "Provides the line attributes for the last line section closing the polygon.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLastLocationReferencePoint"
+        },
+        "locOpenlrAreaLocationReferenceExtensionG": {
+          "title": "locOpenlrAreaLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrClosedLineLocationReferenceExtensionG": {
+          "title": "locOpenlrClosedLineLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrLocationReferencePoint",
+        "openlrLastLine"
+      ]
+    },
+    "OpenlrFormOfWayEnum": {
+      "title": "OpenlrFormOfWayEnum",
+      "description": "Enumeration of for of way",
+      "type": "string",
+      "enum": [
+        "undefined",
+        "motorway",
+        "multipleCarriageway",
+        "singleCarriageway",
+        "roundabout",
+        "slipRoad",
+        "trafficSquare",
+        "other",
+        "extendedG"
+      ]
+    },
+    "OpenlrFormOfWayEnumG": {
+      "title": "OpenlrFormOfWayEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrFormOfWayEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OpenlrFunctionalRoadClassEnum": {
+      "title": "OpenlrFunctionalRoadClassEnum",
+      "description": "Enumeration of functional road class",
+      "type": "string",
+      "enum": [
+        "frc0",
+        "frc1",
+        "frc2",
+        "frc3",
+        "frc4",
+        "frc5",
+        "frc6",
+        "frc7",
+        "extendedG"
+      ]
+    },
+    "OpenlrFunctionalRoadClassEnumG": {
+      "title": "OpenlrFunctionalRoadClassEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrFunctionalRoadClassEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OpenlrGeoCoordinate": {
+      "title": "OpenlrGeoCoordinate",
+      "description": "A geo-coordinate pair is a position in a map defined by its longitude and latitude coordinate values.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrCoordinates": {
+          "title": "openlrCoordinates",
+          "description": "Corresponding coordinates of an OpenLR point defined by its only coordinates.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "locOpenlrPointLocationReferenceExtensionG": {
+          "title": "locOpenlrPointLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrGeoCoordinateExtensionG": {
+          "title": "locOpenlrGeoCoordinateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrCoordinates"
+      ]
+    },
+    "OpenlrGridLocationReference": {
+      "title": "OpenlrGridLocationReference",
+      "description": "Area defined using an OpenLR™ method consisting in defining it by a tessellation of rectangles",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrNumColumns": {
+          "title": "openlrNumColumns",
+          "description": "The number that the base rectangle should be multiplied in the east direction",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "openlrNumRows": {
+          "title": "openlrNumRows",
+          "description": "The number that the base rectangle should be multiplied in the north direction",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "openlrRectangle": {
+          "title": "openlrRectangle",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrRectangle"
+        },
+        "locOpenlrAreaLocationReferenceExtensionG": {
+          "title": "locOpenlrAreaLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrGridLocationReferenceExtensionG": {
+          "title": "locOpenlrGridLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrNumColumns",
+        "openlrNumRows",
+        "openlrRectangle"
+      ]
+    },
+    "OpenlrLastLocationReferencePoint": {
+      "title": "OpenlrLastLocationReferencePoint",
+      "description": "The sequence of location reference points is terminated by a last location reference point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrCoordinates": {
+          "title": "openlrCoordinates",
+          "description": "Provides coordinates for the base point of the OpenLR path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "openlrLineAttributes": {
+          "title": "openlrLineAttributes",
+          "description": "Properties of the line towards the topologically adjacent OpenLR location referencing point, on the shortest path to that point.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLineAttributes"
+        },
+        "locOpenlrBaseReferencePointExtensionG": {
+          "title": "locOpenlrBaseReferencePointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrLastLocationReferencePointExtensionG": {
+          "title": "locOpenlrLastLocationReferencePointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrLineAttributes",
+        "openlrCoordinates"
+      ]
+    },
+    "OpenlrLineAttributes": {
+      "title": "OpenlrLineAttributes",
+      "description": "Line attributes are part of a location reference point and consists of functional road class (FRC),form of way (FOW) and bearing (BEAR) data.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrFunctionalRoadClass": {
+          "title": "openlrFunctionalRoadClass",
+          "description": "Certain aspects of the physical form that a Road Element takes. It is based on a number of certain physical and traffic properties. (EN ISO 14825 § 7.2.85)",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrFunctionalRoadClassEnumG"
+        },
+        "openlrFormOfWay": {
+          "title": "openlrFormOfWay",
+          "description": "A classification based on the importance of the role that the Road Element (or Ferry Connection) performs in the connectivity of the total road network. (EN ISO 14825 § 7.2.88)",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrFormOfWayEnumG"
+        },
+        "openlrBearing": {
+          "title": "openlrBearing",
+          "description": "defines the bearing field as an integer value between 0 and 359",
+          "$ref": "DATEXII_3_Common.json#/definitions/AngleInDegrees"
+        },
+        "locOpenlrLineAttributesExtensionG": {
+          "title": "locOpenlrLineAttributesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrFunctionalRoadClass",
+        "openlrFormOfWay",
+        "openlrBearing"
+      ]
+    },
+    "OpenlrLocationReferencePoint": {
+      "title": "OpenlrLocationReferencePoint",
+      "description": "The basis of a location reference is a sequence of location reference points (LRPs).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrCoordinates": {
+          "title": "openlrCoordinates",
+          "description": "Provides coordinates for the base point of the OpenLR path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "openlrLineAttributes": {
+          "title": "openlrLineAttributes",
+          "description": "Properties of the line towards the topologically adjacent OpenLR location referencing point, on the shortest path to that point.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLineAttributes"
+        },
+        "openlrPathAttributes": {
+          "title": "openlrPathAttributes",
+          "description": "Additional path attributes relative to the next point",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPathAttributes"
+        },
+        "locOpenlrBaseReferencePointExtensionG": {
+          "title": "locOpenlrBaseReferencePointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrLocationReferencePointExtensionG": {
+          "title": "locOpenlrLocationReferencePointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrLineAttributes",
+        "openlrCoordinates",
+        "openlrPathAttributes"
+      ]
+    },
+    "OpenlrOffsets": {
+      "title": "OpenlrOffsets",
+      "description": "Offsets are used to locate the start and end of a location more precisely than bounding to the nodes in a network.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrPositiveOffset": {
+          "title": "openlrPositiveOffset",
+          "description": "The positive offset along the line of the location measured along the line reference path between the start point of the location reference and the starting node of the line reference path.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsNonNegativeInteger"
+        },
+        "openlrNegativeOffset": {
+          "title": "openlrNegativeOffset",
+          "description": "The negative offset along the line of the location measured along the line reference path between the end point of the location reference and the ending node of the line reference path.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsNonNegativeInteger"
+        },
+        "locOpenlrOffsetsExtensionG": {
+          "title": "locOpenlrOffsetsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "OpenlrOrientationEnum": {
+      "title": "OpenlrOrientationEnum",
+      "description": "Enumeration of orientation",
+      "type": "string",
+      "enum": [
+        "noOrientationOrUnknown",
+        "withLineDirection",
+        "againstLineDirection",
+        "both",
+        "extendedG"
+      ]
+    },
+    "OpenlrOrientationEnumG": {
+      "title": "OpenlrOrientationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrOrientationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OpenlrPathAttributes": {
+      "title": "OpenlrPathAttributes",
+      "description": "Properties of the path from the associated location reference point to the next location reference point, which are specified to assist correct identification of the point in an external map data source.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrLowestFrcToNextLRPoint": {
+          "title": "openlrLowestFrcToNextLRPoint",
+          "description": "The lowest FRC to the next point indicates the lowest functional road class used in the location reference path to the next LR-point.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrFunctionalRoadClassEnumG"
+        },
+        "openlrDistanceToNextLRPoint": {
+          "title": "openlrDistanceToNextLRPoint",
+          "description": "The DNP attribute measures the distance in meters between two consecutive location reference-points along the location reference path described in the corresponding enumeration",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "locOpenlrPathAttributesExtensionG": {
+          "title": "locOpenlrPathAttributesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrLowestFrcToNextLRPoint",
+        "openlrDistanceToNextLRPoint"
+      ]
+    },
+    "OpenlrPointAlongLine": {
+      "title": "OpenlrPointAlongLine",
+      "description": "Point along a line",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrSideOfRoad": {
+          "title": "openlrSideOfRoad",
+          "description": "Provides the of road where the corresponding point lies.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrSideOfRoadEnumG"
+        },
+        "openlrOrientation": {
+          "title": "openlrOrientation",
+          "description": "Orientation of the driving direction in relation with the direction of the underlying linear",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrOrientationEnumG"
+        },
+        "openlrLocationReferencePoint": {
+          "title": "openlrLocationReferencePoint",
+          "description": "Allows defining the first point of the OpenLR path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLocationReferencePoint"
+        },
+        "openlrLastLocationReferencePoint": {
+          "title": "openlrLastLocationReferencePoint",
+          "description": "Allows defining the last point of the OpenLR path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLastLocationReferencePoint"
+        },
+        "openlrOffsets": {
+          "title": "openlrOffsets",
+          "description": "Provides optional offsets relative to the path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrOffsets"
+        },
+        "locOpenlrPointLocationReferenceExtensionG": {
+          "title": "locOpenlrPointLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrBasePointLocationExtensionG": {
+          "title": "locOpenlrBasePointLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrPointAlongLineExtensionG": {
+          "title": "locOpenlrPointAlongLineExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrSideOfRoad",
+        "openlrOrientation",
+        "openlrLocationReferencePoint",
+        "openlrLastLocationReferencePoint"
+      ]
+    },
+    "OpenlrPointLocationReferenceG": {
+      "title": "OpenlrPointLocationReferenceG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locOpenlrGeoCoordinate": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrGeoCoordinate"
+        },
+        "locOpenlrPointAlongLine": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPointAlongLine"
+        },
+        "locOpenlrPoiWithAccessPoint": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPoiWithAccessPoint"
+        }
+      }
+    },
+    "OpenlrPoiWithAccessPoint": {
+      "title": "OpenlrPoiWithAccessPoint",
+      "description": "A point of interest (POI) along a line with access is a point location which is defined by a linear reference path, an offset value (defining the access point) from the starting node of this path and a coordinate pair that defines the POI itself.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrSideOfRoad": {
+          "title": "openlrSideOfRoad",
+          "description": "Provides the of road where the corresponding point lies.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrSideOfRoadEnumG"
+        },
+        "openlrOrientation": {
+          "title": "openlrOrientation",
+          "description": "Orientation of the driving direction in relation with the direction of the underlying linear",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrOrientationEnumG"
+        },
+        "openlrLocationReferencePoint": {
+          "title": "openlrLocationReferencePoint",
+          "description": "Allows defining the first point of the OpenLR path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLocationReferencePoint"
+        },
+        "openlrLastLocationReferencePoint": {
+          "title": "openlrLastLocationReferencePoint",
+          "description": "Allows defining the last point of the OpenLR path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrLastLocationReferencePoint"
+        },
+        "openlrOffsets": {
+          "title": "openlrOffsets",
+          "description": "Provides optional offsets relative to the path",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrOffsets"
+        },
+        "openlrCoordinates": {
+          "title": "openlrCoordinates",
+          "description": "The coordinate of the actual point of interest",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "locOpenlrPointLocationReferenceExtensionG": {
+          "title": "locOpenlrPointLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrBasePointLocationExtensionG": {
+          "title": "locOpenlrBasePointLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrPoiWithAccessPointExtensionG": {
+          "title": "locOpenlrPoiWithAccessPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrSideOfRoad",
+        "openlrOrientation",
+        "openlrLocationReferencePoint",
+        "openlrLastLocationReferencePoint",
+        "openlrCoordinates"
+      ]
+    },
+    "OpenlrPolygonCorners": {
+      "title": "OpenlrPolygonCorners",
+      "description": "A geodetic coordinate Tuple that defines the vertices of the underlying geometrical polygon.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrCoordinates": {
+          "title": "openlrCoordinates",
+          "description": "Corresponding coordinates of vertices that define a polygon.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+          },
+          "minItems": 3
+        },
+        "locOpenlrPolygonCornersExtensionG": {
+          "title": "locOpenlrPolygonCornersExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrCoordinates"
+      ]
+    },
+    "OpenlrPolygonLocationReference": {
+      "title": "OpenlrPolygonLocationReference",
+      "description": "The OpenLR method of area definition by providing points that bound the area",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrPolygonCorners": {
+          "title": "openlrPolygonCorners",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPolygonCorners"
+        },
+        "locOpenlrAreaLocationReferenceExtensionG": {
+          "title": "locOpenlrAreaLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrPolygonLocationReferenceExtensionG": {
+          "title": "locOpenlrPolygonLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrPolygonCorners"
+      ]
+    },
+    "OpenlrRectangle": {
+      "title": "OpenlrRectangle",
+      "description": "Area delimited by a rectangle defined by the geodetic co-ordinates of the two ends of its diagonal from south-west to north-east (the rectangle having two sides that are parallel to lines of latitude)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrLowerLeft": {
+          "title": "openlrLowerLeft",
+          "description": "The lower left corner of the rectangle.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "openlrUpperRight": {
+          "title": "openlrUpperRight",
+          "description": "The upper right corner of the rectangle.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "locOpenlrRectangleExtensionG": {
+          "title": "locOpenlrRectangleExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrLowerLeft",
+        "openlrUpperRight"
+      ]
+    },
+    "OpenlrRectangleLocationReference": {
+      "title": "OpenlrRectangleLocationReference",
+      "description": "The openLR method of area definition by providing a rectangular shape defined by two geo-coordinate pairs",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "openlrRectangle": {
+          "title": "openlrRectangle",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrRectangle"
+        },
+        "locOpenlrAreaLocationReferenceExtensionG": {
+          "title": "locOpenlrAreaLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locOpenlrRectangleLocationReferenceExtensionG": {
+          "title": "locOpenlrRectangleLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "openlrRectangle"
+      ]
+    },
+    "OpenlrSideOfRoadEnum": {
+      "title": "OpenlrSideOfRoadEnum",
+      "description": "Enumeration of side of road",
+      "type": "string",
+      "enum": [
+        "onRoadOrUnknown",
+        "right",
+        "left",
+        "both",
+        "extendedG"
+      ]
+    },
+    "OpenlrSideOfRoadEnumG": {
+      "title": "OpenlrSideOfRoadEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrSideOfRoadEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PointByCoordinates": {
+      "title": "PointByCoordinates",
+      "description": "A single point defined only by a coordinate set with an optional bearing direction.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bearing": {
+          "title": "bearing",
+          "description": "A bearing at the point measured in degrees (0 - 359). Unless otherwise specified the reference direction corresponding to 0 degrees is North. Values increase in the clockwise direction.",
+          "$ref": "DATEXII_3_Common.json#/definitions/AngleInDegrees"
+        },
+        "pointCoordinates": {
+          "title": "pointCoordinates",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "locPointByCoordinatesExtensionG": {
+          "title": "locPointByCoordinatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "pointCoordinates"
+      ]
+    },
+    "PointCoordinates": {
+      "title": "PointCoordinates",
+      "description": "A pair of planar coordinates defining the geodetic position of a single point using the European Terrestrial Reference System 1989 (ETRS89).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "title": "latitude",
+          "description": "Latitude in decimal degrees using the European Terrestrial Reference System 1989 (ETRS89).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Float"
+        },
+        "longitude": {
+          "title": "longitude",
+          "description": "Longitude in decimal degrees using the European Terrestrial Reference System 1989 (ETRS89).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Float"
+        },
+        "heightCoordinate": {
+          "title": "heightCoordinate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/HeightCoordinate"
+          },
+          "minItems": 0,
+          "maxItems": 3
+        },
+        "positionConfidenceEllipse": {
+          "title": "positionConfidenceEllipse",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionConfidenceEllipse"
+        },
+        "horizontalPositionAccuracy": {
+          "title": "horizontalPositionAccuracy",
+          "description": "Defines the horizontal position accuracy according EN 16803-1",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionAccuracy"
+        },
+        "locPointCoordinatesExtensionG": {
+          "title": "locPointCoordinatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ]
+    },
+    "PointLocation": {
+      "title": "PointLocation",
+      "description": "Location representing a single geospatial point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "externalReferencing": {
+          "title": "externalReferencing",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/ExternalReferencing"
+          },
+          "minItems": 0
+        },
+        "coordinatesForDisplay": {
+          "title": "coordinatesForDisplay",
+          "description": "Coordinates that may be used by clients for visual display on user interfaces.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointCoordinates"
+        },
+        "supplementaryPositionalDescription": {
+          "title": "supplementaryPositionalDescription",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/SupplementaryPositionalDescription"
+        },
+        "pointByCoordinates": {
+          "title": "pointByCoordinates",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointByCoordinates"
+        },
+        "openlrPointLocationReference": {
+          "title": "openlrPointLocationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/OpenlrPointLocationReferenceG"
+        },
+        "locLocationReferenceExtensionG": {
+          "title": "locLocationReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locLocationExtensionG": {
+          "title": "locLocationExtensionG",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationExtensionTypeG"
+        },
+        "locNetworkLocationExtensionG": {
+          "title": "locNetworkLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "locPointLocationExtensionG": {
+          "title": "locPointLocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PositionAccuracy": {
+      "title": "PositionAccuracy",
+      "description": "Horizontal position accuracy parameters defined according to EN 16803-1",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "accuracyPercentile50": {
+          "title": "accuracyPercentile50",
+          "description": "Accuracy defined by the 50th percentile of the cumulative distribution of position errors.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "accuracyPercentile75": {
+          "title": "accuracyPercentile75",
+          "description": "Accuracy defined by the 75th percentile of the cumulative distribution of position errors",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "accuracyPercentile95": {
+          "title": "accuracyPercentile95",
+          "description": "Accuracy defined by the 95th percentile of the cumulative distribution of position errors",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "locPositionAccuracyExtensionG": {
+          "title": "locPositionAccuracyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PositionConfidenceCodedErrorEnum": {
+      "title": "PositionConfidenceCodedErrorEnum",
+      "description": "Error code for horizontal or vertical position confidence",
+      "type": "string",
+      "enum": [
+        "outOfRange",
+        "unavailable",
+        "extendedG"
+      ]
+    },
+    "PositionConfidenceCodedErrorEnumG": {
+      "title": "PositionConfidenceCodedErrorEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionConfidenceCodedErrorEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PositionConfidenceEllipse": {
+      "title": "PositionConfidenceEllipse",
+      "description": "Confidence ellipse position defined in a shape of ellipse with a predefined confidence level (e.g. 95 %). The centre of the ellipse shape corresponds to the reference position point for which the position accuracy is evaluated.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "semiMajorAxisLength": {
+          "title": "semiMajorAxisLength",
+          "description": "Half of length of the major axis, i.e. distance between the centre point and major axis point of the position accuracy ellipse.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "semiMajorAxisLengthCodedError": {
+          "title": "semiMajorAxisLengthCodedError",
+          "description": "Provides a coded error in case the semi-major axis length is not defined",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionConfidenceCodedErrorEnumG"
+        },
+        "semiMinorAxisLength": {
+          "title": "semiMinorAxisLength",
+          "description": "Half of length of the minor axis, i.e. distance between the centre point and minor axis point of the position accuracy ellipse",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "semiMinorAxisLengthCodedError": {
+          "title": "semiMinorAxisLengthCodedError",
+          "description": "Provides a coded error in case the semi-minor axis length is not defined",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PositionConfidenceCodedErrorEnumG"
+        },
+        "semiMajorAxisOrientation": {
+          "title": "semiMajorAxisOrientation",
+          "description": "Orientation direction of the ellipse major axis of the position accuracy ellipse with regards to the geographic north.",
+          "$ref": "DATEXII_3_Common.json#/definitions/AngleInDegrees"
+        },
+        "semiMajorAxisOrientationError": {
+          "title": "semiMajorAxisOrientationError",
+          "description": "Indicates whether the ellipse orientation is unavailable (True) or not (False)",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "locPositionConfidenceEllipseExtensionG": {
+          "title": "locPositionConfidenceEllipseExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PredefinedLocationGroupVersionedReferenceG": {
+      "title": "PredefinedLocationGroupVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedLocationGroup"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PredefinedLocationVersionedReferenceG": {
+      "title": "PredefinedLocationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "PredefinedLocation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "SubdivisionCode": {
+      "title": "SubdivisionCode",
+      "description": "The second part of an ISO 3166-2 country sub-division code (up to 3 characters) which may be used along with a CountryCode to make a full ISO 3166-2 subdivision code.",
+      "$ref": "DATEXII_3_Common.json#/definitions/String",
+      "maxLength": 3
+    },
+    "SubdivisionTypeEnum": {
+      "title": "SubdivisionTypeEnum",
+      "description": "ISO 3166-2 subdivison types.",
+      "type": "string",
+      "enum": [
+        "administrativeAtoll",
+        "administrativeRegion",
+        "administrativeTerritory",
+        "arcticRegion",
+        "autonomousCity",
+        "autonomousCityInNorthAfrica",
+        "autonomousCommunity",
+        "autonomousDistrict",
+        "autonomousProvince",
+        "autonomousRegion",
+        "canton",
+        "capitalCity",
+        "city",
+        "cityMunicipality",
+        "cityOfCountyRight",
+        "commune",
+        "councilArea",
+        "county",
+        "country",
+        "department",
+        "dependency",
+        "district",
+        "districtMunicipality",
+        "districtWithSpecialStatus",
+        "entity",
+        "geographicalEntity",
+        "governorate",
+        "laender",
+        "localCouncil",
+        "londonBorough",
+        "metropolitanArea",
+        "metropolitanDepartment",
+        "metropolitanDistrict",
+        "metropolitanRegion",
+        "municipality",
+        "overseasDepartment",
+        "overseasRegion",
+        "overseasTerritorialCollectivity",
+        "parish",
+        "province",
+        "quarter",
+        "region",
+        "republic",
+        "republicanCity",
+        "selfGovernedPart",
+        "specialMunicipality",
+        "state",
+        "territorialUnit",
+        "territory",
+        "twoTierCounty",
+        "unitaryAuthority",
+        "ward",
+        "other",
+        "extendedG"
+      ]
+    },
+    "SubdivisionTypeEnumG": {
+      "title": "SubdivisionTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/SubdivisionTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SupplementaryPositionalDescription": {
+      "title": "SupplementaryPositionalDescription",
+      "description": "A collection of supplementary positional information which improves the precision of the location.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locationDescription": {
+          "title": "locationDescription",
+          "description": "Supplementary human-readable description of the location",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "locationPrecision": {
+          "title": "locationPrecision",
+          "description": "Indicates that the location is given with a precision which is better than the stated value in metres.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsNonNegativeInteger"
+        },
+        "locSupplementaryPositionalDescriptionExtensionG": {
+          "title": "locSupplementaryPositionalDescriptionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    }
+  }
+}

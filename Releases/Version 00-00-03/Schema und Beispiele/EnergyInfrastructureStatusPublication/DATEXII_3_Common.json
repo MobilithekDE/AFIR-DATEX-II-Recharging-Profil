@@ -1,0 +1,1697 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "AngleInDegrees": {
+      "title": "AngleInDegrees",
+      "description": "An integer number representing an angle in whole degrees between 0 and 359.",
+      "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger",
+      "minimum": 0.0,
+      "maximum": 359.0
+    },
+    "Base64Binary": {
+      "title": "Base64Binary",
+      "description": "Binary data in base 64 encoding, for example for image data.",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+      "contentEncoding": "base64"
+    },
+    "Boolean": {
+      "title": "Boolean",
+      "description": "Boolean has the value space required to support the mathematical concept of binary-valued logic: {true, false}. ",
+      "type": "boolean"
+    },
+    "CalendarWeekWithinMonth": {
+      "title": "CalendarWeekWithinMonth",
+      "description": "Specification of periods defined by relevant calendar weeks in a month, see ISO8601. Note: Calendar weeks start with Monday. First week is the week containing the first of the month.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableDay": {
+          "title": "applicableDay",
+          "description": "Applicable day of the week. \"All days of the week\" is expressed by non-inclusion of this attribute.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/DayEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 7
+        },
+        "applicableMonth": {
+          "title": "applicableMonth",
+          "description": "Applicable month of the year.  \"All months of the year\" is expressed by non-inclusion of this attribute.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MonthOfYearEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "applicableCalenderWeekWithinMonth": {
+          "title": "applicableCalenderWeekWithinMonth",
+          "description": "Calender week in month. See ISO8601.  \"All weeks of the month\" is expressed by not using the CalendarWeekOfMonth class. Note: Calendar weeks start with Monday. First week is the week containing the first of the month.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/CalendarWeekWithinMonthEnumG"
+          },
+          "minItems": 1,
+          "maxItems": 6
+        },
+        "comDayWeekMonthExtensionG": {
+          "title": "comDayWeekMonthExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "comCalendarWeekWithinMonthExtensionG": {
+          "title": "comCalendarWeekWithinMonthExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "applicableCalenderWeekWithinMonth"
+      ]
+    },
+    "CalendarWeekWithinMonthEnum": {
+      "title": "CalendarWeekWithinMonthEnum",
+      "description": "Calendar week within month (see ISO8601).",
+      "type": "string",
+      "enum": [
+        "firstWeek",
+        "secondWeek",
+        "thirdWeek",
+        "fourthWeek",
+        "fifthWeek",
+        "sixthWeek",
+        "lastWeek",
+        "extendedG"
+      ]
+    },
+    "CalendarWeekWithinMonthEnumG": {
+      "title": "CalendarWeekWithinMonthEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/CalendarWeekWithinMonthEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ComparisonOperatorEnum": {
+      "title": "ComparisonOperatorEnum",
+      "description": "Logical comparison operations.",
+      "type": "string",
+      "enum": [
+        "equalTo",
+        "greaterThan",
+        "greaterThanOrEqualTo",
+        "lessThan",
+        "lessThanOrEqualTo",
+        "extendedG"
+      ]
+    },
+    "ComparisonOperatorEnumG": {
+      "title": "ComparisonOperatorEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConfidentialityValueEnum": {
+      "title": "ConfidentialityValueEnum",
+      "description": "Values of confidentiality.",
+      "type": "string",
+      "enum": [
+        "internalUse",
+        "noRestriction",
+        "extendedG"
+      ]
+    },
+    "ConfidentialityValueEnumG": {
+      "title": "ConfidentialityValueEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/ConfidentialityValueEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CountryCode": {
+      "title": "CountryCode",
+      "description": "EN ISO 3166-1 alpha-2 two-letter country code",
+      "$ref": "DATEXII_3_Common.json#/definitions/String",
+      "maxLength": 2
+    },
+    "DateTime": {
+      "title": "DateTime",
+      "description": "A combination of integer-valued year, month, day, hour, minute properties, a decimal-valued second property and a time zone property from which it is possible to determine the local time, the equivalent UTC time and the time zone offset from UTC.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "DayEnum": {
+      "title": "DayEnum",
+      "description": "Days of the week.",
+      "type": "string",
+      "enum": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+        "extendedG"
+      ]
+    },
+    "DayEnumG": {
+      "title": "DayEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/DayEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "DayWeekMonth": {
+      "title": "DayWeekMonth",
+      "description": "Specification of periods defined by the intersection of days or instances of them, calendar weeks and months.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableDay": {
+          "title": "applicableDay",
+          "description": "Applicable day of the week. \"All days of the week\" is expressed by non-inclusion of this attribute.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/DayEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 7
+        },
+        "applicableMonth": {
+          "title": "applicableMonth",
+          "description": "Applicable month of the year.  \"All months of the year\" is expressed by non-inclusion of this attribute.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MonthOfYearEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "comDayWeekMonthExtensionG": {
+          "title": "comDayWeekMonthExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "DayWeekMonthG": {
+      "title": "DayWeekMonthG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comDayWeekMonth": {
+          "$ref": "DATEXII_3_Common.json#/definitions/DayWeekMonth"
+        },
+        "comInstanceOfDayWithinMonth": {
+          "$ref": "DATEXII_3_Common.json#/definitions/InstanceOfDayWithinMonth"
+        },
+        "comCalendarWeekWithinMonth": {
+          "$ref": "DATEXII_3_Common.json#/definitions/CalendarWeekWithinMonth"
+        }
+      }
+    },
+    "Decimal": {
+      "title": "Decimal",
+      "description": "A decimal number whose value space is the set of numbers that can be obtained by multiplying an integer by a non-positive power of ten, i.e., expressible as i × 10^-n where i and n are integers and n >= 0.",
+      "type": "number"
+    },
+    "EmissionClassificationEuroEnum": {
+      "title": "EmissionClassificationEuroEnum",
+      "description": "Classification of emission according to the Euro emission classification (based on serveral amendments on 1970 Directive 70/220/EEC). Note htat vehicleType as well as fuelType are mandatory to provide to make this classification explicit.",
+      "type": "string",
+      "enum": [
+        "euro5",
+        "euro5a",
+        "euro5b",
+        "euro6",
+        "euro6a",
+        "euro6b",
+        "euro6c",
+        "euroV",
+        "euroVI",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EmissionClassificationEuroEnumExtensionTypeG": {
+      "title": "EmissionClassificationEuroEnumExtensionTypeG",
+      "type": "string",
+      "enum": [
+        "euro0",
+        "euro1",
+        "euro2",
+        "euro3",
+        "euro4",
+        "euro6d",
+        "euro6dTemp",
+        "euroIV",
+        "euroUnknown",
+        "euroI",
+        "euroII",
+        "euroIII"
+      ]
+    },
+    "EmissionClassificationEuroEnumG": {
+      "title": "EmissionClassificationEuroEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/EmissionClassificationEuroEnum"
+        },
+        "extendedValueG": {
+          "$ref": "DATEXII_3_Common.json#/definitions/EmissionClassificationEuroEnumExtensionTypeG"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Emissions": {
+      "title": "Emissions",
+      "description": "Emission characteristics of vehicles.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "emissionClassificationEuro": {
+          "title": "emissionClassificationEuro",
+          "description": "The minimum Euro emission classification the vehicle(s) have to comply with according to the 1970 Directive 70/220/EEC and its several amendments. Note that vehicleType and fuelType need to be provided in order to make this classification explicit.",
+          "$ref": "DATEXII_3_Common.json#/definitions/EmissionClassificationEuroEnumG"
+        },
+        "emissionClassificationOther": {
+          "title": "emissionClassificationOther",
+          "description": "Some other (probably locally defined) value(s) for emission classification.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "emissionLevel": {
+          "title": "emissionLevel",
+          "description": "The low emission level of a vehicle.",
+          "$ref": "DATEXII_3_Common.json#/definitions/LowEmissionLevelEnumG"
+        },
+        "comEmissionsExtensionG": {
+          "title": "comEmissionsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/EmissionsExtensionTypeG"
+        }
+      }
+    },
+    "EmissionsExtensionTypeG": {
+      "title": "EmissionsExtensionTypeG",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "EmissionsExtension": {
+          "title": "EmissionsExtension",
+          "$ref": "DATEXII_3_CommonExtension.json#/definitions/EmissionsExtension"
+        }
+      }
+    },
+    "ExtensionTypeG": {
+      "title": "ExtensionTypeG",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "Float": {
+      "title": "Float",
+      "description": "A floating point number whose value space consists of the values m × 2^e, where m is an integer whose absolute value is less than 2^24, and e is an integer between -149 and 104, inclusive.",
+      "type": "number"
+    },
+    "FuelTypeEnum": {
+      "title": "FuelTypeEnum",
+      "description": "Type of fuel used by a vehicle.",
+      "type": "string",
+      "enum": [
+        "all",
+        "battery",
+        "biodiesel",
+        "diesel",
+        "dieselBatteryHybrid",
+        "ethanol",
+        "hydrogen",
+        "liquidGas",
+        "lpg",
+        "methane",
+        "petrol",
+        "petrol95Octane",
+        "petrol98Octane",
+        "petrolBatteryHybrid",
+        "petrolLeaded",
+        "petrolUnleaded",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "FuelTypeEnumG": {
+      "title": "FuelTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/FuelTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "GrossWeightCharacteristic": {
+      "title": "GrossWeightCharacteristic",
+      "description": "Gross weight characteristic of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        },
+        "grossVehicleWeight": {
+          "title": "grossVehicleWeight",
+          "description": "The gross weight of the vehicle and its load, including any trailers.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Tonnes"
+        },
+        "typeOfWeight": {
+          "title": "typeOfWeight",
+          "description": "The meaning of the weight value",
+          "$ref": "DATEXII_3_Common.json#/definitions/WeightTypeEnumG"
+        },
+        "comGrossWeightCharacteristicExtensionG": {
+          "title": "comGrossWeightCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "grossVehicleWeight",
+        "typeOfWeight"
+      ]
+    },
+    "HeaderInformation": {
+      "title": "HeaderInformation",
+      "description": "Management information relating to the data contained within a publication.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "confidentiality": {
+          "title": "confidentiality",
+          "description": "The extent to which the related information may be circulated, according to the recipient type.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ConfidentialityValueEnumG"
+        },
+        "informationStatus": {
+          "title": "informationStatus",
+          "description": "The status of the related information (real, test, exercise ....).",
+          "$ref": "DATEXII_3_Common.json#/definitions/InformationStatusEnumG"
+        },
+        "comHeaderInformationExtensionG": {
+          "title": "comHeaderInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "informationStatus"
+      ]
+    },
+    "HeaviestAxleWeightCharacteristic": {
+      "title": "HeaviestAxleWeightCharacteristic",
+      "description": "Weight characteristic of the heaviest axle on the vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        },
+        "heaviestAxleWeight": {
+          "title": "heaviestAxleWeight",
+          "description": "The weight of the heaviest axle on the vehicle.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Tonnes"
+        },
+        "comHeaviestAxleWeightCharacteristicExtensionG": {
+          "title": "comHeaviestAxleWeightCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "heaviestAxleWeight"
+      ]
+    },
+    "HeightCharacteristic": {
+      "title": "HeightCharacteristic",
+      "description": "Height characteristic of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        },
+        "vehicleHeight": {
+          "title": "vehicleHeight",
+          "description": "The height of the highest part, excluding antennae, of an individual vehicle above the road surface, in metres.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "comHeightCharacteristicExtensionG": {
+          "title": "comHeightCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "vehicleHeight"
+      ]
+    },
+    "InformationStatusEnum": {
+      "title": "InformationStatusEnum",
+      "description": "Status of the related information (i.e. real, test or exercise).",
+      "type": "string",
+      "enum": [
+        "real",
+        "test",
+        "extendedG"
+      ]
+    },
+    "InformationStatusEnumG": {
+      "title": "InformationStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/InformationStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "InstanceOfDayEnum": {
+      "title": "InstanceOfDayEnum",
+      "description": "Instances of a day of the week in a month",
+      "type": "string",
+      "enum": [
+        "firstInstance",
+        "secondInstance",
+        "thirdInstance",
+        "fourthInstance",
+        "fifthInstance",
+        "lastInstance",
+        "extendedG"
+      ]
+    },
+    "InstanceOfDayEnumG": {
+      "title": "InstanceOfDayEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/InstanceOfDayEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "InstanceOfDayWithinMonth": {
+      "title": "InstanceOfDayWithinMonth",
+      "description": "Specification of periods defined by the instance of a specific weekday within a month (e.g. 3rd Tuesday in May)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableDay": {
+          "title": "applicableDay",
+          "description": "Applicable day of the week. \"All days of the week\" is expressed by non-inclusion of this attribute.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/DayEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 7
+        },
+        "applicableMonth": {
+          "title": "applicableMonth",
+          "description": "Applicable month of the year.  \"All months of the year\" is expressed by non-inclusion of this attribute.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MonthOfYearEnumG"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "applicableInstanceOfDayWithinMonth": {
+          "title": "applicableInstanceOfDayWithinMonth",
+          "description": "The specified integer instance of the specified applicable day within a month.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/InstanceOfDayEnumG"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "comDayWeekMonthExtensionG": {
+          "title": "comDayWeekMonthExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "comInstanceOfDayWithinMonthExtensionG": {
+          "title": "comInstanceOfDayWithinMonthExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "applicableInstanceOfDayWithinMonth"
+      ]
+    },
+    "InternationalIdentifier": {
+      "title": "InternationalIdentifier",
+      "description": "An identifier/name whose range is specific to the particular country.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "country": {
+          "title": "country",
+          "description": "EN ISO 3166-1 two-character country code.",
+          "$ref": "DATEXII_3_Common.json#/definitions/CountryCode"
+        },
+        "nationalIdentifier": {
+          "title": "nationalIdentifier",
+          "description": "Identifier or name unique within the specified country.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "comInternationalIdentifierExtensionG": {
+          "title": "comInternationalIdentifierExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "country",
+        "nationalIdentifier"
+      ]
+    },
+    "Language": {
+      "title": "Language",
+      "description": "A language datatype, identifies a specified language by an ISO 639-1 2-alpha code.",
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "LengthCharacteristic": {
+      "title": "LengthCharacteristic",
+      "description": "Length characteristic of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        },
+        "vehicleLength": {
+          "title": "vehicleLength",
+          "description": "The overall distance between the front and back of an individual vehicle, including the length of any trailers, couplings, embedded features etc.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "comLengthCharacteristicExtensionG": {
+          "title": "comLengthCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "vehicleLength"
+      ]
+    },
+    "LoadTypeEnum": {
+      "title": "LoadTypeEnum",
+      "description": "Types of load carried by a vehicle.",
+      "type": "string",
+      "enum": [
+        "abnormalLoad",
+        "ammunition",
+        "chemicals",
+        "combustibleMaterials",
+        "corrosiveMaterials",
+        "debris",
+        "empty",
+        "explosiveMaterials",
+        "extraHighLoad",
+        "extraLongLoad",
+        "extraWideLoad",
+        "fuel",
+        "glass",
+        "goods",
+        "hazardousMaterials",
+        "liquid",
+        "livestock",
+        "materials",
+        "materialsDangerousForPeople",
+        "materialsDangerousForTheEnvironment",
+        "materialsDangerousForWater",
+        "oil",
+        "ordinary",
+        "perishableProducts",
+        "petrol",
+        "pharmaceuticalMaterials",
+        "radioactiveMaterials",
+        "refrigeratedGoods",
+        "refuse",
+        "toxicMaterials",
+        "vehicles",
+        "other",
+        "extendedG"
+      ]
+    },
+    "LoadTypeEnumG": {
+      "title": "LoadTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/LoadTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "LongString": {
+      "title": "LongString",
+      "description": "A character string with no specified length limit, whose value space is the set of finite-length sequences of characters. Every character has a corresponding Universal Character Set code point (as defined in ISO/IEC 10646), which is an integer.",
+      "type": "string"
+    },
+    "LowEmissionLevelEnum": {
+      "title": "LowEmissionLevelEnum",
+      "description": "The emission level of a vehicle.",
+      "type": "string",
+      "enum": [
+        "lowLevelEmission",
+        "freeOfEmission",
+        "extendedG"
+      ]
+    },
+    "LowEmissionLevelEnumG": {
+      "title": "LowEmissionLevelEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/LowEmissionLevelEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "MetresAsFloat": {
+      "title": "MetresAsFloat",
+      "description": "A measure of distance defined in metres in a floating point format.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "MetresAsNonNegativeInteger": {
+      "title": "MetresAsNonNegativeInteger",
+      "description": "A measure of distance defined in metres in a non negative integer format.",
+      "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+    },
+    "MonthOfYearEnum": {
+      "title": "MonthOfYearEnum",
+      "description": "A list of the months of the year.",
+      "type": "string",
+      "enum": [
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+        "extendedG"
+      ]
+    },
+    "MonthOfYearEnumG": {
+      "title": "MonthOfYearEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/MonthOfYearEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "MultilingualString": {
+      "title": "MultilingualString",
+      "description": "A multilingual string, whereby the same text may be expressed in more than one language.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultiLingualStringValue"
+          }
+        }
+      }
+    },
+    "MultiLingualStringValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lang",
+        "value"
+      ]
+    },
+    "NamedAreaG": {
+      "title": "NamedAreaG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "locNamedArea": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NamedArea"
+        },
+        "locNutsNamedArea": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsNamedArea"
+        },
+        "locIsoNamedArea": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/IsoNamedArea"
+        }
+      }
+    },
+    "NonNegativeInteger": {
+      "title": "NonNegativeInteger",
+      "description": "An integer number whose value space is the set {0, 1, 2, ..., 2147483645, 2147483646, 2147483647}.",
+      "type": "integer",
+      "minimum": 0.0
+    },
+    "NumberOfAxlesCharacteristic": {
+      "title": "NumberOfAxlesCharacteristic",
+      "description": "Number of axles characteristic of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        },
+        "numberOfAxles": {
+          "title": "numberOfAxles",
+          "description": "The total number of axles of an individual vehicle.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "comNumberOfAxlesCharacteristicExtensionG": {
+          "title": "comNumberOfAxlesCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "numberOfAxles"
+      ]
+    },
+    "OverallPeriod": {
+      "title": "OverallPeriod",
+      "description": "A continuous or discontinuous period of validity defined by overall bounding start and end times and the possible intersection of valid periods (potentially recurring) with the complement of exception periods (also potentially recurring).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "overallStartTime": {
+          "title": "overallStartTime",
+          "description": "Start of bounding period of validity defined by date and time.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "overallEndTime": {
+          "title": "overallEndTime",
+          "description": "End of bounding period of validity defined by date and time.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "validPeriod": {
+          "title": "validPeriod",
+          "description": "A single time period, a recurring time period or a set of different recurring time periods during which validity is true.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Period"
+          },
+          "minItems": 0
+        },
+        "exceptionPeriod": {
+          "title": "exceptionPeriod",
+          "description": "A single time period, a recurring time period or a set of different recurring time periods during which validity is false.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Period"
+          },
+          "minItems": 0
+        },
+        "comOverallPeriodExtensionG": {
+          "title": "comOverallPeriodExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "overallStartTime"
+      ]
+    },
+    "PayloadPublicationG": {
+      "title": "PayloadPublicationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "versionG": {
+          "type": "string",
+          "default": "3.5"
+        },
+        "modelBaseVersionG": {
+          "type": "string",
+          "default": "3"
+        },
+        "extensionNameG": {
+          "type": "string"
+        },
+        "extensionVersionG": {
+          "type": "string"
+        },
+        "profileNameG": {
+          "type": "string",
+          "default": "Level C profile Energy InfrastructureG"
+        },
+        "profileVersionG": {
+          "type": "string",
+          "default": "00-02-00G"
+        },
+        "aegiEnergyInfrastructureTablePublication": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureTablePublication"
+        }
+      },
+      "required": [
+        "modelBaseVersionG"
+      ]
+    },
+    "Percentage": {
+      "title": "Percentage",
+      "description": "A ratio expressed as an amount per hundred, such that for example the value 100 represents the case where a quantity is equal to the reference value it is compared with, while the value 50 represents a ratio of one half.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "Period": {
+      "title": "Period",
+      "description": "A continuous time period or a set of discontinuous time periods defined by the intersection of a set of criteria all within an overall delimiting interval.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startOfPeriod": {
+          "title": "startOfPeriod",
+          "description": "Start of period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "endOfPeriod": {
+          "title": "endOfPeriod",
+          "description": "End of a period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "periodName": {
+          "title": "periodName",
+          "description": "The name of the period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "recurringTimePeriodOfDay": {
+          "title": "recurringTimePeriodOfDay",
+          "description": "A recurring period of a day.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/TimePeriodOfDay"
+          },
+          "minItems": 0
+        },
+        "recurringDayWeekMonthPeriod": {
+          "title": "recurringDayWeekMonthPeriod",
+          "description": "A recurring period defined in terms of days of the week, weeks of the month and months of the year. ",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/DayWeekMonthG"
+          },
+          "minItems": 0
+        },
+        "recurringSpecialDay": {
+          "title": "recurringSpecialDay",
+          "description": "A recurring period in terms of special days.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/SpecialDayG"
+          },
+          "minItems": 0
+        },
+        "comPeriodExtensionG": {
+          "title": "comPeriodExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PublicEventTypeEnum": {
+      "title": "PublicEventTypeEnum",
+      "description": "Types of public events.",
+      "type": "string",
+      "enum": [
+        "agriculturalShow",
+        "airShow",
+        "artEvent",
+        "athleticsMeeting",
+        "commercialEvent",
+        "culturalEvent",
+        "ballGame",
+        "baseballGame",
+        "basketballGame",
+        "beerFestival",
+        "bicycleRace",
+        "boatRace",
+        "boatShow",
+        "boxingTournament",
+        "bullFight",
+        "ceremonialEvent",
+        "concert",
+        "cricketMatch",
+        "exhibition",
+        "fair",
+        "festival",
+        "filmFestival",
+        "filmTVMaking",
+        "fireworkDisplay",
+        "flowerEvent",
+        "foodFestival",
+        "footballMatch",
+        "funfair",
+        "gardeningOrFlowerShow",
+        "golfTournament",
+        "hockeyGame",
+        "horseRaceMeeting",
+        "internationalSportsMeeting",
+        "majorEvent",
+        "marathon",
+        "market",
+        "match",
+        "motorShow",
+        "motorSportRaceMeeting",
+        "openAirConcert",
+        "parade",
+        "procession",
+        "raceMeeting",
+        "rugbyMatch",
+        "severalMajorEvents",
+        "show",
+        "showJumping",
+        "soundAndLightShow",
+        "sportsMeeting",
+        "stateOccasion",
+        "streetFestival",
+        "tennisTournament",
+        "theatricalEvent",
+        "tournament",
+        "tradeFair",
+        "waterSportsMeeting",
+        "wineFestival",
+        "winterSportsMeeting",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PublicEventTypeEnumG": {
+      "title": "PublicEventTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/PublicEventTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PublicHoliday": {
+      "title": "PublicHoliday",
+      "description": "Specification of a specific public holiday in case specialDayType is set to 'publicHoliday'.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "intersectWithApplicableDays": {
+          "title": "intersectWithApplicableDays",
+          "description": "When true, the period is the intersection of applicable days and this special day. When false, the period is the union of applicable days and this special day.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "specialDayType": {
+          "title": "specialDayType",
+          "description": "Specification of a special day, for example schoolDay, publicHoliday, ...",
+          "$ref": "DATEXII_3_Common.json#/definitions/SpecialDayTypeEnumG"
+        },
+        "publicEvent": {
+          "title": "publicEvent",
+          "description": "Type of public event on this special day.",
+          "$ref": "DATEXII_3_Common.json#/definitions/PublicEventTypeEnumG"
+        },
+        "publicHolidayName": {
+          "title": "publicHolidayName",
+          "description": "Specification of a specific public holiday by its name.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "namedArea": {
+          "title": "namedArea",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/NamedAreaG"
+          },
+          "minItems": 0
+        },
+        "comSpecialDayExtensionG": {
+          "title": "comSpecialDayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "comPublicHolidayExtensionG": {
+          "title": "comPublicHolidayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "intersectWithApplicableDays",
+        "specialDayType",
+        "publicHolidayName"
+      ]
+    },
+    "Reference": {
+      "title": "Reference",
+      "description": "A reference to an identifiable managed object where the identifier is unique.  It comprises an identifier (e.g. UUID) and a string identifying the class of the referenced object.",
+      "type": "object",
+      "properties": {
+        "idG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "idG"
+      ]
+    },
+    "SpecialDay": {
+      "title": "SpecialDay",
+      "description": "Specification of a special type of day, possibly also a public holiday. Can be country or region specific.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "intersectWithApplicableDays": {
+          "title": "intersectWithApplicableDays",
+          "description": "When true, the period is the intersection of applicable days and this special day. When false, the period is the union of applicable days and this special day.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "specialDayType": {
+          "title": "specialDayType",
+          "description": "Specification of a special day, for example schoolDay, publicHoliday, ...",
+          "$ref": "DATEXII_3_Common.json#/definitions/SpecialDayTypeEnumG"
+        },
+        "publicEvent": {
+          "title": "publicEvent",
+          "description": "Type of public event on this special day.",
+          "$ref": "DATEXII_3_Common.json#/definitions/PublicEventTypeEnumG"
+        },
+        "namedArea": {
+          "title": "namedArea",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/NamedAreaG"
+          },
+          "minItems": 0
+        },
+        "comSpecialDayExtensionG": {
+          "title": "comSpecialDayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "intersectWithApplicableDays",
+        "specialDayType"
+      ]
+    },
+    "SpecialDayG": {
+      "title": "SpecialDayG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comSpecialDay": {
+          "$ref": "DATEXII_3_Common.json#/definitions/SpecialDay"
+        },
+        "comPublicHoliday": {
+          "$ref": "DATEXII_3_Common.json#/definitions/PublicHoliday"
+        }
+      }
+    },
+    "SpecialDayTypeEnum": {
+      "title": "SpecialDayTypeEnum",
+      "description": "Collection of special types of days.",
+      "type": "string",
+      "enum": [
+        "dayBeforePublicHoliday",
+        "publicHoliday",
+        "dayFollowingPublicHoliday",
+        "longWeekendDay",
+        "inLieuOfPublicHoliday",
+        "schoolDay",
+        "schoolHolidays",
+        "publicEventDay",
+        "other",
+        "extendedG"
+      ]
+    },
+    "SpecialDayTypeEnumG": {
+      "title": "SpecialDayTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/SpecialDayTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "String": {
+      "title": "String",
+      "description": "A character string whose value space is the set of finite-length sequences of characters. Every character has a corresponding Universal Character Set code point (as defined in ISO/IEC 10646), which is an integer.",
+      "type": "string",
+      "maxLength": 1024
+    },
+    "Time": {
+      "title": "Time",
+      "description": "An instant of time that recurs every day. The value space of time is the space of time of day values as defined in § 5.3 of [ISO 8601]. Specifically, it is a set of zero-duration daily time instances.",
+      "type": "string",
+      "format": "time"
+    },
+    "TimePeriodOfDay": {
+      "title": "TimePeriodOfDay",
+      "description": "Specification of a continuous period of time within a 24 hour period.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startTimeOfPeriod": {
+          "title": "startTimeOfPeriod",
+          "description": "Start of time period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Time"
+        },
+        "endTimeOfPeriod": {
+          "title": "endTimeOfPeriod",
+          "description": "End of time period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Time"
+        },
+        "comTimePeriodOfDayExtensionG": {
+          "title": "comTimePeriodOfDayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "startTimeOfPeriod",
+        "endTimeOfPeriod"
+      ]
+    },
+    "Tonnes": {
+      "title": "Tonnes",
+      "description": "A measure of weight defined in metric tonnes.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "Url": {
+      "title": "Url",
+      "description": "A Uniform Resource Locator (URL) address comprising a compact string of characters for a resource available on the Internet.",
+      "type": "string"
+    },
+    "UrlLink": {
+      "title": "UrlLink",
+      "description": "Details of a Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "urlLinkAddress": {
+          "title": "urlLinkAddress",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "urlLinkDescription": {
+          "title": "urlLinkDescription",
+          "description": "Description of the relevant information available on the Internet from the URL link.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "urlLinkType": {
+          "title": "urlLinkType",
+          "description": "Details of the type of relevant information available on the Internet from the URL link.",
+          "$ref": "DATEXII_3_Common.json#/definitions/UrlLinkTypeEnumG"
+        },
+        "comUrlLinkExtensionG": {
+          "title": "comUrlLinkExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "urlLinkAddress"
+      ]
+    },
+    "UrlLinkTypeEnum": {
+      "title": "UrlLinkTypeEnum",
+      "description": "Types of URL links.",
+      "type": "string",
+      "enum": [
+        "documentPdf",
+        "html",
+        "image",
+        "rss",
+        "videoStream",
+        "voiceStream",
+        "other",
+        "extendedG"
+      ]
+    },
+    "UrlLinkTypeEnumG": {
+      "title": "UrlLinkTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/UrlLinkTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VehicleCharacteristics": {
+      "title": "VehicleCharacteristics",
+      "description": "The characteristics of a vehicle, e.g. lorry of gross weight greater than 30 tonnes.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fuelType": {
+          "title": "fuelType",
+          "description": "The type of fuel used by the vehicle.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/FuelTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "loadType": {
+          "title": "loadType",
+          "description": "The type of load carried by the vehicle, especially in respect of hazardous loads.",
+          "$ref": "DATEXII_3_Common.json#/definitions/LoadTypeEnumG"
+        },
+        "vehicleEquipment": {
+          "title": "vehicleEquipment",
+          "description": "The type of equipment in use or on board the vehicle.",
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleEquipmentEnumG"
+        },
+        "vehicleType": {
+          "title": "vehicleType",
+          "description": "Vehicle type.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/VehicleTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "vehicleUsage": {
+          "title": "vehicleUsage",
+          "description": "The type of usage of the vehicle (i.e. for what purpose is the vehicle being used).",
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleUsageEnumG"
+        },
+        "yearOfFirstRegistration": {
+          "title": "yearOfFirstRegistration",
+          "description": "Year of first registration of the vehicle",
+          "$ref": "DATEXII_3_Common.json#/definitions/Year"
+        },
+        "grossWeightCharacteristic": {
+          "title": "grossWeightCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/GrossWeightCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "heightCharacteristic": {
+          "title": "heightCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/HeightCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "lengthCharacteristic": {
+          "title": "lengthCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/LengthCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "widthCharacteristic": {
+          "title": "widthCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/WidthCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "heaviestAxleWeightCharacteristic": {
+          "title": "heaviestAxleWeightCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/HeaviestAxleWeightCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "numberOfAxlesCharacteristic": {
+          "title": "numberOfAxlesCharacteristic",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/NumberOfAxlesCharacteristic"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "emissions": {
+          "title": "emissions",
+          "$ref": "DATEXII_3_Common.json#/definitions/Emissions"
+        },
+        "comVehicleCharacteristicsExtensionG": {
+          "title": "comVehicleCharacteristicsExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleCharacteristicsExtensionTypeG"
+        }
+      }
+    },
+    "VehicleCharacteristicsExtensionTypeG": {
+      "title": "VehicleCharacteristicsExtensionTypeG",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "VehicleCharacteristicsExtended": {
+          "title": "VehicleCharacteristicsExtended",
+          "$ref": "DATEXII_3_CommonExtension.json#/definitions/VehicleCharacteristicsExtended"
+        }
+      }
+    },
+    "VehicleEquipmentEnum": {
+      "title": "VehicleEquipmentEnum",
+      "description": "Types of vehicle equipment in use or on board.",
+      "type": "string",
+      "enum": [
+        "notUsingSnowChains",
+        "notUsingSnowChainsOrTyres",
+        "snowChainsInUse",
+        "snowTyresInUse",
+        "snowChainsOrTyresInUse",
+        "withoutSnowTyresOrChainsOnBoard",
+        "extendedG"
+      ]
+    },
+    "VehicleEquipmentEnumG": {
+      "title": "VehicleEquipmentEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleEquipmentEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VehicleTypeEnum": {
+      "title": "VehicleTypeEnum",
+      "description": "Types of vehicle.",
+      "type": "string",
+      "enum": [
+        "agriculturalVehicle",
+        "anyVehicle",
+        "articulatedBus",
+        "articulatedTrolleyBus",
+        "articulatedVehicle",
+        "bicycle",
+        "bus",
+        "car",
+        "caravan",
+        "carOrLightVehicle",
+        "carWithCaravan",
+        "carWithTrailer",
+        "constructionOrMaintenanceVehicle",
+        "fourWheelDrive",
+        "heavyGoodsVehicle",
+        "heavyGoodsVehicleWithTrailer",
+        "heavyDutyTransporter",
+        "heavyVehicle",
+        "highSidedVehicle",
+        "lightCommercialVehicle",
+        "largeCar",
+        "largeGoodsVehicle",
+        "lightCommercialVehicleWithTrailer",
+        "longHeavyLorry",
+        "lorry",
+        "metro",
+        "minibus",
+        "moped",
+        "motorcycle",
+        "motorcycleWithSideCar",
+        "motorhome",
+        "motorscooter",
+        "passengerCar",
+        "smallCar",
+        "tanker",
+        "threeWheeledVehicle",
+        "trailer",
+        "tram",
+        "trolleyBus",
+        "twoWheeledVehicle",
+        "van",
+        "vehicleWithCaravan",
+        "vehicleWithCatalyticConverter",
+        "vehicleWithoutCatalyticConverter",
+        "vehicleWithTrailer",
+        "withEvenNumberedRegistrationPlates",
+        "withOddNumberedRegistrationPlates",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "VehicleTypeEnumG": {
+      "title": "VehicleTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VehicleUsageEnum": {
+      "title": "VehicleUsageEnum",
+      "description": "Types of usage of a vehicle.",
+      "type": "string",
+      "enum": [
+        "agricultural",
+        "carSharing",
+        "cityLogistics",
+        "commercial",
+        "emergencyServices",
+        "military",
+        "nonCommercial",
+        "patrol",
+        "recoveryServices",
+        "roadMaintenanceOrConstruction",
+        "roadOperator",
+        "taxi",
+        "extendedG"
+      ]
+    },
+    "VehicleUsageEnumG": {
+      "title": "VehicleUsageEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleUsageEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VersionedReference": {
+      "title": "VersionedReference",
+      "description": "A reference to an identifiable version managed object where the combination of the identifier and version is unique. It comprises an identifier (e.g. UUID), a version (NonNegativeInteger) and a string identifying the class of the referenced object.",
+      "type": "object",
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "idG"
+      ]
+    },
+    "WeightTypeEnum": {
+      "title": "WeightTypeEnum",
+      "description": "Type of weight - describing the meaning of a vehicle weight value",
+      "type": "string",
+      "enum": [
+        "actual",
+        "maximumPermitted",
+        "extendedG"
+      ]
+    },
+    "WeightTypeEnumG": {
+      "title": "WeightTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Common.json#/definitions/WeightTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "WidthCharacteristic": {
+      "title": "WidthCharacteristic",
+      "description": "Width characteristic of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "The operator to be used in the vehicle characteristic comparison operation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        },
+        "vehicleWidth": {
+          "title": "vehicleWidth",
+          "description": "The maximum width of an individual vehicle, including any features embedded or fixed on it, in metres.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "comWidthCharacteristicExtensionG": {
+          "title": "comWidthCharacteristicExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "comparisonOperator",
+        "vehicleWidth"
+      ]
+    },
+    "Year": {
+      "title": "Year",
+      "description": "A year.",
+      "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+    }
+  }
+}
