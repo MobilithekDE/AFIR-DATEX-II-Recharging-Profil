@@ -1,4 +1,4 @@
-## DRAFT Fassung zur Konsultation
+## DRAFT Fassung 00-03-00 zur Konsultation
 
 Änderungen zur finalen Version vorbehalten
 
@@ -7,7 +7,7 @@ https://datexprofile.de/index.html
 
 Nutzer und Passwort: datex
 
-Hinweise: 
+<ins>Hinweise:</ins>
 
 * JSON Delta-Datenlieferungen können erst ab frühestens 11.04.25 auf der Mobilithek getestet werden. 
 * Die zweite Ladestation im beigefügten Beispiel ist nicht vollständig ausgearbeitet.
