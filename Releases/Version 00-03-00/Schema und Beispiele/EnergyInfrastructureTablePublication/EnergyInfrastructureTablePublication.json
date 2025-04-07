@@ -1,0 +1,1251 @@
+{
+	"payload": {
+		"modelBaseVersionG": "3",
+		"profileNameG": "Level C profile Energy Infrastructure",
+		"profileVersionG": "01-00-00",
+		"aegiEnergyInfrastructureTablePublication": {
+			"lang": "de",
+			"publicationTime": "2025-01-10T11:13:51+01:00",
+			"publicationCreator": {
+				"country": "DE",
+				"nationalIdentifier": "DE-NAP-OrganisationXY"
+			},
+			"headerInformation": {
+				"confidentiality": {"value": "noRestriction"},
+				"informationStatus": {"value": "test"}
+			},
+			"energyInfrastructureTable": [
+				{
+					"idG": "2474A514-0E5D-48F9-A908-F185DD4177A2",
+					"versionG": "2",
+					"tableName": "Region Nord",
+					"energyInfrastructureSite": [
+						{
+							"idG": "21F02723-CF84-4380-84D4-050917836C7C",
+							"versionG": "1",
+							"accessibility": [
+								{"value": "barrierFreeAccessible"}
+							],
+							"additionalInformation": [
+								{
+									"values": [
+										{
+											"lang": "de",
+											"value": "Zusatzinformationen"
+										}
+									]
+								}
+							],
+							"informationWebsite": [
+								{"urlLinkAddress": "https://---.com"}
+							],
+							"operatingHours": {
+								"afacOpenAllHours": {}
+							},
+							"locationReference": {
+								"locAreaLocation": {
+									"coordinatesForDisplay": {
+										"latitude": 50.779599,
+										"longitude": 6.104507
+									},
+									"locLocationExtensionG": {
+										"facilityLocation": {
+											"address": {
+												"postcode": "55555",
+												"city": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Musterstadt"
+														}
+													]
+												},
+												"countryCode": "DE",
+												"addressLine": [
+													{
+														"order": 0,
+														"type": {"value": "street"},
+														"text": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "Hauptstraße"
+																}
+															]
+														}
+													},
+													{
+														"order": 1,
+														"type": {"value": "houseNumber"},
+														"text": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "12"
+																}
+															]
+														}
+													}
+												]
+											}
+										}
+									},
+									"gmlMultiPolygon": {
+										"gmlPolygon": [
+											{
+												"exterior": {
+													"srsDimension": 2,
+													"srsName": "EPSG 4326 WGS84",
+													"posList": "50.77978 6.10437 50.7797 6.10411 50.7795 6.10422 50.77956 6.10473 50.77982 6.10469 50.77978 6.10437"
+												}
+											}
+										]
+									}
+								}
+							},
+							"operator": {
+								"afacOrganisation": {
+									"name": {
+										"values": [
+											{
+												"lang": "de",
+												"value": "Operator XYZ"
+											}
+										]
+									},
+									"legalName": {
+										"values": [
+											{
+												"lang": "de",
+												"value": "Operator XYZ"
+											}
+										]
+									},
+									"organisationUnit": [
+										{
+											"name": {
+												"values": [
+													{
+														"lang": "de",
+														"value": "Niederlassung West"
+													}
+												]
+											},
+											"contactInformation": [
+												{
+													"afacContactInformation": {"eMail": "email@operator.com"}
+												}
+											]
+										}
+									],
+									"externalIdentifier": [
+										{
+											"identifier": "[Operator-ID, 3-stellig]",
+											"typeOfIdentifier": {
+												"value": "extendedG",
+												"extendedValueG": "operatorId"
+											}
+										},
+										{
+											"identifier": "[BNetzA-ID des Operators]",
+											"typeOfIdentifier": {
+												"value": "extendedG",
+												"extendedValueG": "operatorIdBNetzA"
+											}
+										}
+									]
+								}
+							},
+							"dedicatedParkingSpaces": [
+								{
+									"idG": "13D7BE2D-07BC-4358-B3E3-AD0C75FB3A18",
+									"versionG": "1",
+									"applicableForVehicles": [
+										{
+											"vehicleType": [
+												{"value": "car"}
+											]
+										}
+									],
+									"numberOfSpaces": 25
+								},
+								{
+									"idG": "0F6682EC-0884-499B-AE29-8DFFF510945F",
+									"versionG": "1",
+									"applicableForVehicles": [
+										{
+											"vehicleType": [
+												{"value": "lorry"}
+											]
+										}
+									],
+									"numberOfSpaces": 0
+								}
+							],
+							"typeOfSite": {"value": "openSpace"},
+							"brand": {
+								"values": [
+									{
+										"lang": "de",
+										"value": "E-Energy"
+									}
+								]
+							},
+							"exclusiveUsers": [
+								{"value": "allUsers"}
+							],
+							"serviceType": [
+								{
+									"serviceType": {"value": "physicalAttendance"},
+									"overallPeriod": {
+										"overallStartTime": "2024-01-01T00:00:00+01:00",
+										"overallEndTime": "2026-12-31T23:59:00+01:00",
+										"validPeriod": [
+											{
+												"recurringTimePeriodOfDay": [
+													{
+														"startTimeOfPeriod": "07:00:00+01:00",
+														"endTimeOfPeriod": "20:00:00+01:00"
+													}
+												],
+												"recurringDayWeekMonthPeriod": [
+													{
+														"comDayWeekMonth": {
+															"applicableDay": [
+																{"value": "monday"},
+																{"value": "tuesday"},
+																{"value": "wednesday"},
+																{"value": "thursday"},
+																{"value": "friday"}
+															]
+														}
+													}
+												]
+											}
+										]
+									}
+								}
+							],
+							"entrance": [
+								{
+									"locPointLocation": {
+										"coordinatesForDisplay": {
+											"latitude": 50.77959,
+											"longitude": 6.10450
+										},
+										"supplementaryPositionalDescription": {
+											"locationDescription": {
+												"values": [
+													{
+														"lang": "de",
+														"value": "Zusatzinformationen zur Einfahrt"
+													}
+												]
+											}
+										},
+										"pointByCoordinates": {
+											"pointCoordinates": {
+												"latitude": 50.77959,
+												"longitude": 6.10450
+											}
+										}
+									}
+								}
+							],
+							"energyInfrastructureStation": [
+								{
+									"idG": "68722A13-ECD6-4A51-8D6D-01A933F2D3DF",
+									"versionG": "1",
+									"lastUpdated": "2025-01-10T11:13:51+01:00",
+									"description": {
+										"values": [
+											{
+												"lang": "de",
+												"value": "evt. genauere Beschreibung"
+											}
+										]
+									},
+									"accessibility": [
+										{"value": "barrierFreeAccessible"}
+									],
+									"additionalInformation": [
+										{
+											"values": [
+												{
+													"lang": "de",
+													"value": "evt. Zusatzinformationen"
+												}
+											]
+										}
+									],
+									"externalIdentifier": [
+										{
+											"identifier": "[Ladestations-ID der Bundesnetzagentur]",
+											"typeOfIdentifier": {
+												"value": "extendedG",
+												"extendedValueG": "stationIdBNetzA"
+											}
+										}
+									],
+									"informationWebsite": [
+										{"urlLinkAddress": "https://--------"}
+									],
+									"photoUrl": [
+										{"urlLinkAddress": "https://--------"}
+									],
+									"operatingHours": {
+										"afacOpenAllHours": {}
+									},
+									"locationReference": {
+										"locPointLocation": {
+											"coordinatesForDisplay": {
+												"latitude": 50.77959,
+												"longitude": 6.10450
+											},
+											"locLocationExtensionG": {
+												"facilityLocation": {
+													"timeZone": "+01:00",
+													"address": {
+														"postcode": "55555",
+														"city": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "Musterstadt"
+																}
+															]
+														},
+														"countryCode": "DE",
+														"addressLine": [
+															{
+																"order": 0,
+																"type": {"value": "street"},
+																"text": {
+																	"values": [
+																		{
+																			"lang": "de",
+																			"value": "Hauptstraße"
+																		}
+																	]
+																}
+															},
+															{
+																"order": 1,
+																"type": {"value": "houseNumber"},
+																"text": {
+																	"values": [
+																		{
+																			"lang": "de",
+																			"value": "12"
+																		}
+																	]
+																}
+															}
+														]
+													},
+													"nutsArea": [
+														{
+															"nutsCodeType": {"value": "nuts1Code"},
+															"nutsCode": "DEA"
+														}
+													]
+												}
+											},
+											"supplementaryPositionalDescription": {
+												"locationDescription": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Zusatzinformationen"
+														}
+													]
+												}
+											},
+											"pointByCoordinates": {
+												"pointCoordinates": {
+													"latitude": 50.77959,
+													"longitude": 6.10450
+												}
+											}
+										}
+									},
+									"operator": {
+										"afacOrganisation": {
+											"name": {
+												"values": [
+													{
+														"lang": "de",
+														"value": "[Name des Betreibers]"
+													}
+												]
+											},
+											"legalName": {
+												"values": [
+													{
+														"lang": "de",
+														"value": "[Offizielle Bezeichnung des Betreibers]"
+													}
+												]
+											},
+											"externalIdentifier": [
+												{
+													"identifier": "[Operator-ID, 3-stellig]",
+													"typeOfIdentifier": {
+														"value": "extendedG",
+														"extendedValueG": "operatorId"
+													}
+												},
+												{
+													"identifier": "[BNetzA-ID des Operators]",
+													"typeOfIdentifier": {
+														"value": "extendedG",
+														"extendedValueG": "operatorIdBNetzA"
+													}
+												}
+											]
+										}
+									},
+									"helpdesk": {
+										"afacIdentifiableOrganisation": {
+											"idG": "DCC5768C-6852-4AB2-880D-E0409A3CC239",
+											"versionG": "2",
+											"name": {
+												"values": [
+													{
+														"lang": "de",
+														"value": "Ihre Helpdesk GmbH"
+													}
+												]
+											},
+											"organisationUnit": [
+												{
+													"contactInformation": [
+														{
+															"afacContactInformation": {"telephoneNumber": "+4924100000000"}
+														}
+													],
+													"operatingHours": {
+														"afacOperatingHoursSpecification": {
+															"idG": "D3AD3210-CCD0-4AD5-9E70-B582251F69AA",
+															"versionG": "3",
+															"overallPeriod": {
+																"overallStartTime": "2025-01-01T00:00:00+01:00",
+																"overallEndTime": "2025-12-31T23:59:00+01:00",
+																"validPeriod": [
+																	{
+																		"recurringTimePeriodOfDay": [
+																			{
+																				"startTimeOfPeriod": "06:00:00+01:00",
+																				"endTimeOfPeriod": "23:00:00+01:00"
+																			}
+																		]
+																	}
+																],
+																"exceptionPeriod": [
+																	{
+																		"recurringDayWeekMonthPeriod": [
+																			{
+																				"comDayWeekMonth": {
+																					"applicableDay": [
+																						{"value": "sunday"}
+																					]
+																				}
+																			}
+																		],
+																		"recurringSpecialDay": [
+																			{
+																				"comSpecialDay": {
+																					"intersectWithApplicableDays": false,
+																					"specialDayType": {"value": "publicHoliday"}
+																				}
+																			}
+																		]
+																	},
+																	{
+																		"startOfPeriod": "2025-07-15T00:00:00+02:00",
+																		"endOfPeriod": "2025-07-22T23:59:59+02:00"
+																	}
+																]
+															}
+														}
+													}
+												}
+											]
+										}
+									},
+									"applicableForVehicles": [
+										{
+											"grossWeightCharacteristic": [
+												{
+													"comparisonOperator": {"value": "lessThan"},
+													"grossVehicleWeight": 2,
+													"typeOfWeight": {"value": "actual"}
+												}
+											],
+											"comVehicleCharacteristicsExtensionG": {
+												"euVehicleCategory": [
+													{"value": "l"},
+													{"value": "m1"}
+												]
+											}
+										}
+									],
+									"amenities": {
+										"illuminated": false,
+										"roofed": true,
+										"illuminatedRechargingParkingNearby": true
+									},
+									"supplementalFacility": [
+										{
+											"afacSupplementalEquipment": {
+												"idG": "60527483-026C-4745-ACEA-E8D27E0D95B3",
+												"versionG": "1",
+												"equipmentType": {"value": "restingFacilities"}
+											}
+										},
+										{
+											"afacSupplementalEquipment": {
+												"idG": "AF09B7AC-B5B1-4FA1-AACF-E098AFB7EFC0",
+												"versionG": "1",
+												"quantity": 2,
+												"equipmentType": {"value": "paymentMachine"}
+											}
+										}
+									],
+									"dedicatedParkingSpaces": [
+										{
+											"idG": "A6450D0F-1B74-4B8E-9388-E7A252FC0B66",
+											"versionG": "1",
+											"accessibility": [
+												{"value": "barrierFreeAccessible"}
+											],
+											"applicableForVehicles": [
+												{
+													"comVehicleCharacteristicsExtensionG": {
+														"euVehicleCategory": [
+															{"value": "l"},
+															{"value": "m1"}
+														]
+													}
+												}
+											],
+											"amenities": {
+												"illuminated": false,
+												"roofed": true
+											},
+											"numberOfSpaces": 2
+										},
+										{
+											"idG": "A6450D0F-1B74-4B8E-9388-E7A252FC0B66",
+											"versionG": "1",
+											"locationReference": {
+												"locPointLocation": {
+													"pointByCoordinates": {
+														"pointCoordinates": {
+															"latitude": 50.779599,
+															"longitude": 6.104507
+														}
+													}
+												}
+											},
+											"dimension": {"width": 4},
+											"numberOfSpaces": 1,
+											"userSpecific": [
+												{"value": "personsWithDisabilities"}
+											]
+										}
+									],
+									"totalMaximumPower": 100000,
+									"authenticationAndIdentificationMethods": [
+										{"value": "activeRFIDChip"},
+										{"value": "creditCard"}
+									],
+									"numberOfRefillPoints": 2,
+									"userInterfaceLanguage": ["de"],
+									"energyDistributor": {
+										"afacOrganisationByReference": {
+											"organisationReference": {
+												"targetClass": "afacIdentifiableOrganisation",
+												"idG": "01B5CCA0-E746-4084-9EEB-47F0DB297AB0",
+												"versionG": "1"
+											}
+										}
+									},
+									"mobilityServiceProvider": [
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Stromanbieter ABC3"
+														}
+													]
+												}
+											}
+										}
+									],
+									"roamingPlatform": [
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Roaming1"
+														}
+													]
+												}
+											}
+										},
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Roaming2"
+														}
+													]
+												}
+											}
+										},
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Roaming3"
+														}
+													]
+												}
+											}
+										}
+									],
+									"serviceType": [
+										{
+											"serviceType": {"value": "unattended"}
+										}
+									],
+									"refillPoint": [
+										{
+											"aegiElectricChargingPoint": {
+												"idG": "73ABE928-707D-4A99-8043-4293EE685504",
+												"versionG": "2",
+												"externalIdentifier": [
+													{
+														"identifier": "DEABCEXXXXXXXX12345",
+														"typeOfIdentifier": {
+															"value": "extendedG",
+															"extendedValueG": "evseId"
+														}
+													}
+												],
+												"deliveryUnit": {"value": "kWh"},
+												"modelType": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Anschlusstyp AB123"
+														}
+													]
+												},
+												"currentType": {"value": "ac"},
+												"usageType": [
+													{"value": "electricVehicle"}
+												],
+												"vehicleToGridCommunicationType": [
+													{"value": "iso15118"}
+												],
+												"numberOfConnectors": 2,
+												"availableVoltage": [
+													200,
+													400
+												],
+												"availableChargingPower": [
+													11000,
+													22000,
+													50000
+												],
+												"smartRechargingServices": [
+													{"value": "remoteMonitoring"},
+													{"value": "bidirectionalRecharging"},
+													{"value": "powerOptimisationByUser"}
+												],
+												"otherSmartRechargingServices": [
+													{
+														"values": [
+															{
+																"lang": "de",
+																"value": "weitere smart recharging Services"
+															}
+														]
+													}
+												],
+												"connector": [
+													{
+														"connectorType": {"value": "iec62196T2"},
+														"maxPowerAtSocket": 22000
+													},
+													{
+														"connectorType": {"value": "chademo"},
+														"maxPowerAtSocket": 50000
+													}
+												],
+												"electricEnergy": [
+													{
+														"energyProductName": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "1a Strommix"
+																}
+															]
+														},
+														"energyRate": [
+															{
+																"idG": "74034E3E-9D2F-4410-BE6F-CAA3176D69B4",
+																"ratePolicy": {"value": "adHoc"},
+																"lastUpdated": "2025-01-10T11:13:51+01:00",
+																"applicableCurrency": ["EUR"],
+																"paymentMethod": {
+																	"paymentMeans": [
+																		{"value": "emv"},
+																		{"value": "website"}
+																	],
+																	"brandsAcceptedCodeList": [
+																		{
+																			"brandsAcceptedList": {"value": "visa"}
+																		}
+																	]
+																},
+																"energyPrice": [
+																	{
+																		"priceType": {"value": "pricePerKWh"},
+																		"value": 0.35
+																	}
+																]
+															}
+														]
+													},
+													{
+														"energyProductName": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "Grüner Strom"
+																}
+															]
+														},
+														"mobilityServiceProvider": [
+															{
+																"afacOrganisationByReference": {
+																	"organisationReference": {
+																		"targetClass": "afacIdentifiableOrganisation",
+																		"idG": "A1633959-F0BE-4F48-85CC-1A9FAE2BF34B"
+																	}
+																}
+															}
+														],
+														"energyRate": [
+															{
+																"idG": "9C07640B-7ECE-46EC-A23F-417E99C53F33",
+																"ratePolicy": {"value": "contract"},
+																"lastUpdated": "2025-01-10T11:13:51+01:00",
+																"applicableCurrency": ["EUR"],
+																"rateName": {
+																	"values": [
+																		{
+																			"lang": "de",
+																			"value": "GrünTarif 1AB"
+																		}
+																	]
+																},
+																"energyPrice": [
+																	{
+																		"priceType": {"value": "pricePerKWh"},
+																		"value": 0.3,
+																		"overallPeriod": {
+																			"overallStartTime": "2025-01-01T00:00:00+01:00",
+																			"overallEndTime": "2025-12-31T23:59:59+01:00",
+																			"validPeriod": [
+																				{
+																					"recurringTimePeriodOfDay": [
+																						{
+																							"startTimeOfPeriod": "21:00:00+01:00",
+																							"endTimeOfPeriod": "06:00:00+01:00"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										},
+										{
+											"aegiElectricChargingPoint": {
+												"idG": "35E5FC89-E2C9-4946-8E70-6A2C56E0BD7E",
+												"versionG": "1",
+												"deliveryUnit": {"value": "kWh"},
+												"currentType": {"value": "ac"},
+												"usageType": [
+													{"value": "electricVehicle"}
+												],
+												"vehicleToGridCommunicationType": [
+													{"value": "iec619802"}
+												],
+												"numberOfConnectors": 1,
+												"availableVoltage": [400],
+												"availableChargingPower": [40000],
+												"smartRechargingServices": [
+													{"value": "remoteMonitoring"}
+												],
+												"connector": [
+													{
+														"connectorType": {"value": "other"},
+														"otherConnector": "Some other connector type",
+														"maxPowerAtSocket": 40000
+													}
+												],
+												"electricEnergy": [
+													{
+														"energyRateByReference": [
+															{
+																"targetClass": "aegiEnergyRate",
+																"idG": "9C07640B-7ECE-46EC-A23F-417E99C53F33"
+															}
+														]
+													}
+												]
+											}
+										}
+									],
+									"electricEnergy": [
+										{
+											"isGreenEnergy": true,
+											"mobilityServiceProvider": [
+												{
+													"afacOrganisationByReference": {
+														"organisationReference": {
+															"targetClass": "afacIdentifiableOrganisation",
+															"idG": "A1633959-F0BE-4F48-85CC-1A9FAE2BF34B"
+														}
+													}
+												}
+											],
+											"energyRate": [
+												{
+													"idG": "A1633959-F0BE-4F48-85CC-1A9FAE2BF34B",
+													"ratePolicy": {"value": "adHoc"},
+													"lastUpdated": "2025-01-10T11:13:51+01:00",
+													"applicableCurrency": ["EUR"],
+													"paymentMethod": {
+														"paymentMeans": [
+															{"value": "emv"},
+															{"value": "nfc"}
+														]
+													}
+												}
+											]
+										},
+										{
+											"isGreenEnergy": true,
+											"mobilityServiceProvider": [
+												{
+													"afacIdentifiableOrganisation": {
+														"idG": "A1633959-F0BE-4F48-85CC-1A9FAE2BF34B",
+														"versionG": "1",
+														"name": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "Vertragsparter XY"
+																}
+															]
+														},
+														"linkToGeneralInformation": "linkToGeneralInformation",
+														"linkToWebform": "https://contact.me"
+													}
+												}
+											],
+											"energyRate": [
+												{
+													"idG": "4C55D08A-20D5-4A7A-8067-81AB5E15E738",
+													"ratePolicy": {"value": "contract"},
+													"lastUpdated": "2025-01-10T11:13:51+01:00",
+													"applicableCurrency": ["EUR"],
+													"paymentMethod": {
+														"paymentMeans": [
+															{"value": "qrCode"},
+															{"value": "website"}
+														]
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"idG": "0563BFAD-646D-4A19-9E5C-6D4599FAAF6A",
+									"versionG": "3",
+									"externalIdentifier": [
+										{
+											"identifier": "[Ladestations-ID der Bundesnetzagentur]",
+											"typeOfIdentifier": {
+												"value": "extendedG",
+												"extendedValueG": "stationIdBNetzA"
+											}
+										}
+									],
+									"locationReference": {
+										"locPointLocation": {
+											"coordinatesForDisplay": {
+												"latitude": 50.779594,
+												"longitude": 50.779594
+											}
+										}
+									},
+									"dedicatedParkingSpaces": [
+										{
+											"idG": "BC3BBA0E-14B1-461E-83B2-1CF5A0118B9F",
+											"versionG": "1",
+											"accessibility": [
+												{"value": "barrierFreeAccessible"}
+											],
+											"locationReference": {
+												"locAreaLocation": {
+													"gmlMultiPolygon": {
+														"gmlPolygon": [
+															{
+																"exterior": {
+																	"srsDimension": 2,
+																	"srsName": "EPSG 4326 WGS84",
+																	"posList": "50.77967 6.10438 50.77964 6.10439 50.77964 6.10448 50.77969 6.10447 50.77977 6.10445 50.77967 6.10438"
+																}
+															}
+														]
+													}
+												}
+											},
+											"applicableForVehicles": [
+												{
+													"fuelType": [
+														{"value": "battery"}
+													],
+													"vehicleType": [
+														{"value": "car"}
+													],
+													"heightCharacteristic": [
+														{
+															"comparisonOperator": {"value": "lessThan"},
+															"vehicleHeight": 3
+														}
+													]
+												}
+											],
+											"dimension": {
+												"length": 6,
+												"width": 3
+											},
+											"numberOfSpaces": 1
+										},
+										{
+											"idG": "BC44BBE7-DFD5-4822-BF51-30D213A4CF9F",
+											"versionG": "1",
+											"numberOfSpaces": 0,
+											"userSpecific": [
+												{"value": "personsWithDisabilities"}
+											]
+										}
+									],
+									"totalMaximumPower": 200000,
+									"authenticationAndIdentificationMethods": [
+										{"value": "apps"}
+									],
+									"numberOfRefillPoints": 2,
+									"userInterfaceLanguage": ["de"],
+									"mobilityServiceProvider": [
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Stromanbieter ABC3"
+														}
+													]
+												}
+											}
+										}
+									],
+									"roamingPlatform": [
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "RPT1"
+														}
+													]
+												}
+											}
+										},
+										{
+											"afacOrganisation": {
+												"name": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "RPT2"
+														}
+													]
+												}
+											}
+										}
+									],
+									"serviceType": [
+										{
+											"serviceType": {"value": "unattended"}
+										}
+									],
+									"refillPoint": [
+										{
+											"aegiElectricChargingPoint": {
+												"idG": "CAEBDA8A-210A-48EA-856A-EA9595FDDD10",
+												"versionG": "2",
+												"deliveryUnit": {"value": "kWh"},
+												"modelType": {
+													"values": [
+														{
+															"lang": "de",
+															"value": "Anschlusstyp XY"
+														}
+													]
+												},
+												"currentType": {"value": "ac"},
+												"usageType": [
+													{"value": "electricVehicle"}
+												],
+												"vehicleToGridCommunicationType": [
+													{"value": "iso15118"}
+												],
+												"numberOfConnectors": 2,
+												"availableVoltage": [
+													200,
+													400
+												],
+												"availableChargingPower": [
+													11000,
+													22000,
+													50000
+												],
+												"smartRechargingServices": [
+													{"value": "remoteMonitoring"},
+													{"value": "bidirectionalRecharging"},
+													{"value": "powerOptimisationByUser"}
+												],
+												"otherSmartRechargingServices": [
+													{
+														"values": [
+															{
+																"lang": "de",
+																"value": "weitere smart recharging Services"
+															}
+														]
+													}
+												],
+												"connector": [
+													{
+                                                        "externalIdentifier": [
+                                                            {
+                                                                "identifier": "DEABCEXXXXXXXX12345",
+                                                                "typeOfIdentifier": {
+                                                                    "value": "extendedG",
+                                                                    "extendedValueG": "evseId"
+                                                                }
+                                                            }
+                                                        ],
+														"connectorType": {"value": "iec62196T2"},
+														"maxPowerAtSocket": 22000
+													},
+													{
+                                                        "externalIdentifier": [
+                                                            {
+                                                                "identifier": "DEABCEXXXXXXXX12346",
+                                                                "typeOfIdentifier": {
+                                                                    "value": "extendedG",
+                                                                    "extendedValueG": "evseId"
+                                                                }
+                                                            }
+                                                        ],"connectorType": {"value": "chademo"},
+														"maxPowerAtSocket": 50000
+													}
+												],
+												"electricEnergy": [
+													{
+														"energyProductName": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "1a Strommix"
+																}
+															]
+														},
+														"energyRate": [
+															{
+																"idG": "39E6F05D-070E-47EF-94D7-6DEDE1332B2B",
+																"ratePolicy": {"value": "adHoc"},
+																"lastUpdated": "2025-01-10T11:13:51+01:00",
+																"applicableCurrency": ["EUR"],
+																"paymentMethod": {
+																	"paymentMeans": [
+																		{"value": "emv"},
+																		{"value": "website"}
+																	],
+																	"brandsAcceptedCodeList": [
+																		{
+																			"brandsAcceptedList": {"value": "visa"}
+																		}
+																	]
+																},
+																"energyPrice": [
+																	{
+																		"priceType": {"value": "pricePerKWh"},
+																		"value": 0.35
+																	}
+																]
+															}
+														]
+													},
+													{
+														"energyProductName": {
+															"values": [
+																{
+																	"lang": "de",
+																	"value": "Grüner Strom"
+																}
+															]
+														},
+														"mobilityServiceProvider": [
+															{
+																"afacOrganisationByReference": {
+																	"organisationReference": {
+																		"targetClass": "afacIdentifiableOrganisation",
+																		"idG": "A1633959-F0BE-4F48-85CC-1A9FAE2BF34B"
+																	}
+																}
+															}
+														],
+														"energyRate": [
+															{
+																"idG": "7DE39FF9-8F26-48FE-9981-07131534ACC2",
+																"ratePolicy": {"value": "contract"},
+																"lastUpdated": "2025-01-10T11:13:51+01:00",
+																"applicableCurrency": ["EUR"],
+																"rateName": {
+																	"values": [
+																		{
+																			"lang": "de",
+																			"value": "GrünTarif 1AB"
+																		}
+																	]
+																},
+																"energyPrice": [
+																	{
+																		"priceType": {"value": "pricePerKWh"},
+																		"value": 0.3,
+																		"overallPeriod": {
+																			"overallStartTime": "2025-01-01T00:00:00+01:00",
+																			"overallEndTime": "2025-12-31T23:59:59+01:00",
+																			"validPeriod": [
+																				{
+																					"recurringTimePeriodOfDay": [
+																						{
+																							"startTimeOfPeriod": "21:00:00+01:00",
+																							"endTimeOfPeriod": "06:00:00+01:00"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	},
+																	{
+																		"priceType": {"value": "pricePerKWh"},
+																		"value": 0.27,
+																		"overallPeriod": {
+																			"overallStartTime": "2025-01-01T00:00:00+01:00",
+																			"overallEndTime": "2025-12-31T23:59:59+01:00",
+																			"validPeriod": [
+																				{
+																					"recurringTimePeriodOfDay": [
+																						{
+																							"startTimeOfPeriod": "21:00:00+01:00",
+																							"endTimeOfPeriod": "06:00:00+01:00"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										},
+										{
+											"aegiElectricChargingPoint": {
+												"idG": "D8CF0A86-037F-449C-8BE2-5820EECC9036",
+												"versionG": "1",
+												"deliveryUnit": {"value": "kWh"},
+												"currentType": {"value": "dc"},
+												"usageType": [
+													{"value": "electricVehicle"}
+												],
+												"vehicleToGridCommunicationType": [
+													{"value": "iec619802"}
+												],
+												"numberOfConnectors": 1,
+												"availableVoltage": [400],
+												"availableChargingPower": [40000],
+												"chargingMode": {"value": "mode4DC"},
+												"smartRechargingServices": [
+													{"value": "remoteMonitoring"}
+												],
+												"connector": [
+													{
+														"connectorType": {"value": "other"},
+														"otherConnector": "Some other connector type",
+														"maxPowerAtSocket": 40000
+													}
+												]
+											}
+										}
+									],
+									"electricEnergy": [
+										{
+											"energyRateByReference": [
+												{
+													"targetClass": "aegiEnergyRate",
+													"idG": "9C07640B-7ECE-46EC-A23F-417E99C53F33"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

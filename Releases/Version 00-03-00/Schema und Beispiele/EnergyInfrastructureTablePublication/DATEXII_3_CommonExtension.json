@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "EmissionsExtension": {
+      "title": "EmissionsExtension",
+      "description": "An extension for the Emissions class to provide a comparison operator.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparisonOperator": {
+          "title": "comparisonOperator",
+          "description": "A comparison operator for the applicable emission classifications in correspondence to the specified value. The comparison applies to the Roman- or Arabic-numbered portion (e.g. euro6 > euro5b), but not crosswise (e.g. euro6 cannot be compared to euroV).",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComparisonOperatorEnumG"
+        }
+      },
+      "required": [
+        "comparisonOperator"
+      ]
+    },
+    "EuVehicleCategoryEnum": {
+      "title": "EuVehicleCategoryEnum",
+      "description": "Vehicle categories according to EU legislation",
+      "type": "string",
+      "enum": [
+        "l",
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5",
+        "l6",
+        "l7",
+        "m",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t41",
+        "t42",
+        "t43",
+        "m1",
+        "m2",
+        "m3",
+        "n",
+        "n1",
+        "n1ClassI",
+        "n1ClassII",
+        "n1ClassIII",
+        "n1ClassIIIAndN2",
+        "n2",
+        "n3",
+        "o",
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EuVehicleCategoryEnumG": {
+      "title": "EuVehicleCategoryEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CommonExtension.json#/definitions/EuVehicleCategoryEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "VehicleCharacteristicsExtended": {
+      "title": "VehicleCharacteristicsExtended",
+      "description": "An extension class to provide EU Vehicle categories",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "euVehicleCategory": {
+          "title": "euVehicleCategory",
+          "description": "Vehicle categories as defined in EU Directive 2007/46/EG and Regulation (EU) No 168/2013.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CommonExtension.json#/definitions/EuVehicleCategoryEnumG"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "euVehicleCategory"
+      ]
+    }
+  }
+}
