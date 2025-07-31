@@ -1,7 +1,7 @@
 ## DRAFT Fassung 00-03-00 zur Konsultation
 
 Änderungen zur finalen Version vorbehalten -<br>
-Die finale Version wird hier am 1. Augusst 2025 veröffentlicht!
+Die finale Version wird hier Anfang Augusst 2025 veröffentlicht!
 
 Eine browser-basierte Variante des Modells findet sich unter
 https://datexprofile.de
