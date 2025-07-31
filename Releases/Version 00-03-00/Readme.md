@@ -10,5 +10,4 @@ Nutzer und Passwort: datex
 
 <ins>Hinweise:</ins>
 
-* JSON Delta-Datenlieferungen können erst ab frühestens 11.04.25 auf der Mobilithek getestet werden. 
 * Die zweite Ladestation im beigefügten Beispiel ist nicht vollständig ausgearbeitet.
