@@ -1,4 +1,4 @@
-## AFIR DATEX II Profil für Elektroladeinfrasturktur, Version 01-00-00
+## AFIR DATEX II Profil für Elektroladeinfrastruktur, Version 01-00-00
 
 Eine browser-basierte Variante des Modells findet sich unter
 https://datexprofile.de/AFIR
