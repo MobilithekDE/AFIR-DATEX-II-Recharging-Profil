@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "DurationValue": {
+      "title": "DurationValue",
+      "description": "A measured or calculated value of a period of time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "title": "duration",
+          "description": "A period of time expressed in seconds.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "comDataValueExtensionG": {
+          "title": "comDataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "comxDurationValueExtensionG": {
+          "title": "comxDurationValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "duration"
+      ]
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "Agent": {
+      "title": "Agent",
+      "description": "an actor in the exchange context",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "title": "address",
+          "description": "the network address of the exchange agent ",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "name": {
+          "title": "name",
+          "description": "name of the agent in the exchange context",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "referenceID": {
+          "title": "referenceID",
+          "description": "a reference for the agent in the exchange context",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "serviceURL": {
+          "title": "serviceURL",
+          "description": "the URL to address the agent service",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "internationalIdentifier": {
+          "title": "internationalIdentifier",
+          "$ref": "DATEXII_3_Common.json#/definitions/InternationalIdentifier"
+        },
+        "exAgentExtensionG": {
+          "title": "exAgentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "DynamicInformation": {
+      "title": "DynamicInformation",
+      "description": "Dynamic Exchange Information",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exchangeStatus": {
+          "title": "exchangeStatus",
+          "description": "Status of Exchange defined by protocol Specification",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ExchangeStatusEnumG"
+        },
+        "messageGenerationTimestamp": {
+          "title": "messageGenerationTimestamp",
+          "description": "the date time in which the message had been generated",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "exDynamicInformationExtensionG": {
+          "title": "exDynamicInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "exchangeStatus",
+        "messageGenerationTimestamp"
+      ]
+    },
+    "ExchangeContext": {
+      "title": "ExchangeContext",
+      "description": "Exchange Context e.g. which defines the specific Exchange Pattern and Functional Exchange Profile and other details about Supplier & client",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "codedExchangeProtocol": {
+          "title": "codedExchangeProtocol",
+          "description": "the exchange protocol type as referenced by any standard or by agreement among client and supplier, e.g. Snapshot Pull, Simple Push, Collaborative ITS Services, etc",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ProtocolTypeEnumG"
+        },
+        "exchangeSpecificationVersion": {
+          "title": "exchangeSpecificationVersion",
+          "description": "the version of the protocol used for the exchange as by standard or as agreed among client and supplier",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "supplierOrCisRequester": {
+          "title": "supplierOrCisRequester",
+          "description": "it defines the supplier or CIS requester information of the exchange context",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Agent"
+        },
+        "exExchangeContextExtensionG": {
+          "title": "exExchangeContextExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "codedExchangeProtocol",
+        "exchangeSpecificationVersion",
+        "supplierOrCisRequester"
+      ]
+    },
+    "ExchangeInformation": {
+      "title": "ExchangeInformation",
+      "description": "Exchange Information ",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exchangeContext": {
+          "title": "exchangeContext",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ExchangeContext"
+        },
+        "dynamicInformation": {
+          "title": "dynamicInformation",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/DynamicInformation"
+        },
+        "exExchangeInformationExtensionG": {
+          "title": "exExchangeInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "exchangeContext",
+        "dynamicInformation"
+      ]
+    },
+    "ExchangeStatusEnum": {
+      "title": "ExchangeStatusEnum",
+      "description": "Enumeration that identifies the status of exchange session",
+      "type": "string",
+      "enum": [
+        "closingSession",
+        "offline",
+        "online",
+        "openingSession",
+        "resuming",
+        "undefined",
+        "extendedG"
+      ]
+    },
+    "ExchangeStatusEnumG": {
+      "title": "ExchangeStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ExchangeStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ProtocolTypeEnum": {
+      "title": "ProtocolTypeEnum",
+      "description": "a list of protocol type as possible exchange specification available",
+      "type": "string",
+      "enum": [
+        "deltaPull",
+        "deltaPush",
+        "other",
+        "simpleCIS",
+        "simplePush",
+        "snapshotPull",
+        "snapshotPush",
+        "statefulCIS",
+        "statefulPush",
+        "extendedG"
+      ]
+    },
+    "ProtocolTypeEnumG": {
+      "title": "ProtocolTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ProtocolTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "AmountOfMoney": {
+      "title": "AmountOfMoney",
+      "description": "A monetary value expressed to two decimal places.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Decimal"
+    },
+    "ClosureInformation": {
+      "title": "ClosureInformation",
+      "description": "Information about temporary or permanent closure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "permananentlyClosed": {
+          "title": "permananentlyClosed",
+          "description": "Permanently closed, i.e. it is not intended to open again.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "temporarilyClosed": {
+          "title": "temporarilyClosed",
+          "description": "Temporarily closed for an unspecified period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "closedFrom": {
+          "title": "closedFrom",
+          "description": "Permanently or temporarily closed from the given date on. May lie in the future - in this case the scene is not closed now.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "temporarilyClosedUntil": {
+          "title": "temporarilyClosedUntil",
+          "description": "Temporarily closed until the given date (i.e. closure still includes this date).",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "afacClosureInformationExtensionG": {
+          "title": "afacClosureInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "FacilityObjectStatus": {
+      "title": "FacilityObjectStatus",
+      "description": "Dynamic status information for a facility object.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "FacilityObjectStatusG": {
+      "title": "FacilityObjectStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacFacilityObjectStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectStatus"
+        },
+        "afacFacilityStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityStatus"
+        },
+        "aegiRefillPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatus"
+        },
+        "aegiElectricChargingPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingPointStatus"
+        },
+        "aegiEnergyInfrastructureStationStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureStationStatus"
+        },
+        "aegiEnergyInfrastructureSiteStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureSiteStatus"
+        },
+        "afacSupplementalFacilityStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalFacilityStatus"
+        }
+      }
+    },
+    "FacilityObjectVersionedReferenceG": {
+      "title": "FacilityObjectVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "FacilityObject"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "FacilityStatus": {
+      "title": "FacilityStatus",
+      "description": "Dynamic status information for a facility.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "supplementalFacilityStatus": {
+          "title": "supplementalFacilityStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalFacilityStatus"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "FacilityStatusG": {
+      "title": "FacilityStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacFacilityStatus": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityStatus"
+        },
+        "aegiRefillPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatus"
+        },
+        "aegiElectricChargingPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingPointStatus"
+        },
+        "aegiEnergyInfrastructureStationStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureStationStatus"
+        },
+        "aegiEnergyInfrastructureSiteStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureSiteStatus"
+        }
+      }
+    },
+    "OpenAllHours": {
+      "title": "OpenAllHours",
+      "description": "Open or available all the time (24/7)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOpenAllHoursExtensionG": {
+          "title": "afacOpenAllHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "OpeningStatusEnum": {
+      "title": "OpeningStatusEnum",
+      "description": "The opening status of some entity (e.g. parking site, service facility, access,...)",
+      "type": "string",
+      "enum": [
+        "open",
+        "openWithServiceLimitation",
+        "closed",
+        "closedOnHoliday",
+        "closedOnMaintenance",
+        "temporarilyClosed",
+        "statusUnknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "OpeningStatusEnumG": {
+      "title": "OpeningStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OperatingHoursByReference": {
+      "title": "OperatingHoursByReference",
+      "description": "Operating hours information that is addressed via a reference.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingHoursReference": {
+          "title": "operatingHoursReference",
+          "description": "The reference to an operating hours specification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursSpecificationVersionedReferenceG"
+        },
+        "operatingHoursTableReference": {
+          "title": "operatingHoursTableReference",
+          "description": "Operation hours table in question defined by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursTableVersionedReferenceG"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOperatingHoursByReferenceExtensionG": {
+          "title": "afacOperatingHoursByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingHoursReference"
+      ]
+    },
+    "OperatingHoursG": {
+      "title": "OperatingHoursG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacOperatingHoursSpecification": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursSpecification"
+        },
+        "afacUnknownOperatingHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UnknownOperatingHours"
+        },
+        "afacOperatingHoursByReference": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursByReference"
+        },
+        "afacOpenAllHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpenAllHours"
+        },
+        "afacUndefinedOperatingHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UndefinedOperatingHours"
+        }
+      }
+    },
+    "OperatingHoursSpecification": {
+      "title": "OperatingHoursSpecification",
+      "description": "A specification of operating hours (e.g. for a parking site, a service facility, an access or the availability for equipment).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "label": {
+          "title": "label",
+          "description": "A label, name or identifier for this operating hours specification.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "operatingAllYear": {
+          "title": "operatingAllYear",
+          "description": "The facility or organisation is not closed on a seasonal base.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "urlLinkAddress": {
+          "title": "urlLinkAddress",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "description": "The specification of operating hours by an overall period combined with valid or exceptional periods.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOperatingHoursSpecificationExtensionG": {
+          "title": "afacOperatingHoursSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "overallPeriod"
+      ]
+    },
+    "OperatingHoursSpecificationVersionedReferenceG": {
+      "title": "OperatingHoursSpecificationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursSpecification"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OperatingHoursTableVersionedReferenceG": {
+      "title": "OperatingHoursTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OperationStatusEnum": {
+      "title": "OperationStatusEnum",
+      "description": "Specifies whether some facility, scenario or equipment is in operation or not.",
+      "type": "string",
+      "enum": [
+        "inOperation",
+        "limitedOperation",
+        "notInOperation",
+        "notInOperationAbnormal",
+        "technicalDefect",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "OperationStatusEnumG": {
+      "title": "OperationStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SupplementalFacilityStatus": {
+      "title": "SupplementalFacilityStatus",
+      "description": "Information on current status and availability of supplemental facilities (for example number of free electric charging stations).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "quantityOverride": {
+          "title": "quantityOverride",
+          "description": "Overrides the static quantity information (for example because of long- or midterm closures, such as renovation).",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "numberOfSubitemsOverride": {
+          "title": "numberOfSubitemsOverride",
+          "description": "Overrides the static value 'numberOfSubitems' (for example because of long- or midterm closures, such as renovation).",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "vacantSubitems": {
+          "title": "vacantSubitems",
+          "description": "Sets the number of currently vacant elements of either equipment (e.g. free toilets) or service facility subitems (e.g. free restaurant places).",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "equipmentOperationStatus": {
+          "title": "equipmentOperationStatus",
+          "description": "Specifies whether this supplemental equipment is available / is in operation or not.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacSupplementalFacilityStatusExtensionG": {
+          "title": "afacSupplementalFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "UndefinedOperatingHours": {
+      "title": "UndefinedOperatingHours",
+      "description": "There are no operating hours specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacUndefinedOperatingHoursExtensionG": {
+          "title": "afacUndefinedOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownOperatingHours": {
+      "title": "UnknownOperatingHours",
+      "description": "The operating hours are not known.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacUnknownOperatingHoursExtensionG": {
+          "title": "afacUnknownOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    }
+  }
+}

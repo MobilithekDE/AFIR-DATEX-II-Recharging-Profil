@@ -1,0 +1,1915 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "AccessibilityEnum": {
+      "title": "AccessibilityEnum",
+      "description": "Information on accessibility and facilities for persons with disabilities.",
+      "type": "string",
+      "enum": [
+        "barrierFreeAccessible",
+        "disabilityAccessible",
+        "wheelChairAccessible",
+        "disabilityFacilities",
+        "orientationSystemForBlindPeople",
+        "marking",
+        "none",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "AccessibilityEnumG": {
+      "title": "AccessibilityEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AccessibilityEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Amenities": {
+      "title": "Amenities",
+      "description": "Amenities such as the facility (or a facility in the surrounding) being roofed or illuminated.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "illuminated": {
+          "title": "illuminated",
+          "description": "The facility is illuminated during darkness.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "roofed": {
+          "title": "roofed",
+          "description": "The facility has got a roof.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "illuminatedRechargingParkingNearby": {
+          "title": "illuminatedRechargingParkingNearby",
+          "description": "There is a illuminated recharging or refuelling parking location in the immediate surrounding of the facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "roofedRechargingParkingNearby": {
+          "title": "roofedRechargingParkingNearby",
+          "description": "There is a roofed recharging or refuelling parking location in the immediate surrounding of the facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "afacAmenitiesExtensionG": {
+          "title": "afacAmenitiesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "AmountOfMoney": {
+      "title": "AmountOfMoney",
+      "description": "A monetary value expressed to two decimal places.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Decimal"
+    },
+    "AnOrganisation": {
+      "title": "AnOrganisation",
+      "description": "An organisation. It can be specialised to be referenceable.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "legalName": {
+          "title": "legalName",
+          "description": "The legal name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "linkToGeneralInformation": {
+          "title": "linkToGeneralInformation",
+          "description": "An internet address from where further relevant information about this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "linkToLogo": {
+          "title": "linkToLogo",
+          "description": "An internet address from where the logo of this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "linkToWebform": {
+          "title": "linkToWebform",
+          "description": "An internet address pointing to a webform, which people can use to send messages to this organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "available24hours": {
+          "title": "available24hours",
+          "description": "Specifies if the availability is 24 hours a day. If omitted, this information is unknown or heterogeneous.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "responsibility": {
+          "title": "responsibility",
+          "description": "Specification of services or other duties the organisation is responsible for.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "publishingAgreement": {
+          "title": "publishingAgreement",
+          "description": "Indication whether the organisation accepted publishing its information.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "type": {
+          "title": "type",
+          "description": "Information whether the organisation in question belongs to the public or private sector.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationTypeEnumG"
+        },
+        "nationalOrganisationNumber": {
+          "title": "nationalOrganisationNumber",
+          "description": "The national organisation number in the specified national register, if applicable.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "nationalRegister": {
+          "title": "nationalRegister",
+          "description": "A national register where the organisation is registered.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "vatIdentificationNumber": {
+          "title": "vatIdentificationNumber",
+          "description": "The VAT identification number of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "organisationUnit": {
+          "title": "organisationUnit",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationUnit"
+          },
+          "minItems": 0
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "subOrganisation": {
+          "title": "subOrganisation",
+          "description": "An organisation that is subordinated to its parent organisation, defined likewise by the Organisation model structure.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacAnOrganisationExtensionG": {
+          "title": "afacAnOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "AnOrganisationG": {
+      "title": "AnOrganisationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacAnOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AnOrganisation"
+        },
+        "afacReferenceableOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ReferenceableOrganisation"
+        }
+      }
+    },
+    "AvailabilityEnum": {
+      "title": "AvailabilityEnum",
+      "description": "An enumeration which states if something is available or not.",
+      "type": "string",
+      "enum": [
+        "available",
+        "notAvailable",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "AvailabilityEnumG": {
+      "title": "AvailabilityEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AvailabilityEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ClosureInformation": {
+      "title": "ClosureInformation",
+      "description": "Information about temporary or permanent closure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "permananentlyClosed": {
+          "title": "permananentlyClosed",
+          "description": "Permanently closed, i.e. it is not intended to open again.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "temporarilyClosed": {
+          "title": "temporarilyClosed",
+          "description": "Temporarily closed for an unspecified period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "closedFrom": {
+          "title": "closedFrom",
+          "description": "Permanently or temporarily closed from the given date on. May lie in the future - in this case the scene is not closed now.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "temporarilyClosedUntil": {
+          "title": "temporarilyClosedUntil",
+          "description": "Temporarily closed until the given date (i.e. closure still includes this date).",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "afacClosureInformationExtensionG": {
+          "title": "afacClosureInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactInformation": {
+      "title": "ContactInformation",
+      "description": "Contact information",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "title": "language",
+          "description": "Language(s) that are supported via telephone or mail.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Language"
+          },
+          "minItems": 0
+        },
+        "telephoneNumber": {
+          "title": "telephoneNumber",
+          "description": "Telephone number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "faxNumber": {
+          "title": "faxNumber",
+          "description": "Fax number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "eMail": {
+          "title": "eMail",
+          "description": "E-Mail address, which can be a general mail address or the mail address of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "afacContactInformationExtensionG": {
+          "title": "afacContactInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactInformationG": {
+      "title": "ContactInformationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacContactInformation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ContactInformation"
+        },
+        "afacContactPerson": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ContactPerson"
+        }
+      }
+    },
+    "ContactPerson": {
+      "title": "ContactPerson",
+      "description": "A specific contact person",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "title": "language",
+          "description": "Language(s) that are supported via telephone or mail.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Language"
+          },
+          "minItems": 0
+        },
+        "telephoneNumber": {
+          "title": "telephoneNumber",
+          "description": "Telephone number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "faxNumber": {
+          "title": "faxNumber",
+          "description": "Fax number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "eMail": {
+          "title": "eMail",
+          "description": "E-Mail address, which can be a general mail address or the mail address of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "name": {
+          "title": "name",
+          "description": "The (last) name of the contact person",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "firstName": {
+          "title": "firstName",
+          "description": "The first name of the contact person",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "title": {
+          "title": "title",
+          "description": "Title information of the contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "position": {
+          "title": "position",
+          "description": "The position of the contact person",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "afacContactInformationExtensionG": {
+          "title": "afacContactInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacContactPersonExtensionG": {
+          "title": "afacContactPersonExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "CurrencyCode": {
+      "title": "CurrencyCode",
+      "description": "Three letter code defining the currency according to ISO 4217:2015 (e.g. EUR for Euro).",
+      "$ref": "DATEXII_3_Common.json#/definitions/String",
+      "pattern": "[A-Z][A-Z][A-Z]"
+    },
+    "Dimension": {
+      "title": "Dimension",
+      "description": "A component that provides dimension information. Especially for multi-storey buildings, the usable area might be larger than the product from its length and width. ",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "length": {
+          "title": "length",
+          "description": "Length.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "width": {
+          "title": "width",
+          "description": "Width.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "height": {
+          "title": "height",
+          "description": "Height.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "usableArea": {
+          "title": "usableArea",
+          "description": "The area measured in square metres, that is available for some specific purpose.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SquareMetres"
+        },
+        "afacDimensionExtensionG": {
+          "title": "afacDimensionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "EquipmentTypeEnum": {
+      "title": "EquipmentTypeEnum",
+      "description": "Types of equipment.",
+      "type": "string",
+      "enum": [
+        "bathRoom",
+        "bikeParking",
+        "cashMachine",
+        "copyMachineOrService",
+        "defibrillator",
+        "dsrcReceiver",
+        "dumpingStation",
+        "electricChargingStation",
+        "elevator",
+        "faxMachineOrService",
+        "fireExtinguisher",
+        "fireHose",
+        "fireHydrant",
+        "firstAidEquipment",
+        "iceFreeScaffold",
+        "informationPoint",
+        "informationStele",
+        "internetTerminal",
+        "internetWireless",
+        "luggageLocker",
+        "paymentMachine",
+        "picnicFacilities",
+        "playground",
+        "publicCardPhone",
+        "publicCoinPhone",
+        "publicPhone",
+        "refuseBin",
+        "restingFacilities",
+        "safeDeposit",
+        "shelter",
+        "shower",
+        "snowAndIceRemovalEquipment",
+        "toilet",
+        "tollTerminal",
+        "tyreAirPressureEquipment",
+        "waterBasin",
+        "vendingMachine",
+        "waterSupply",
+        "wasteDisposal",
+        "waterTap",
+        "none",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EquipmentTypeEnumG": {
+      "title": "EquipmentTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/EquipmentTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ExternalIdentifier": {
+      "title": "ExternalIdentifier",
+      "description": "An external (maybe national) identifier, optional with its specific type.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "title": "identifier",
+          "description": "An external (maybe national) identifier.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "typeOfIdentifier": {
+          "title": "typeOfIdentifier",
+          "description": "The type of identifier expressed as enumeration, which should be extended project specific.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/TypeOfIdentifierEnumG"
+        },
+        "otherTypeOfIdentifier": {
+          "title": "otherTypeOfIdentifier",
+          "description": "The type of identifier expressed as string.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "afacExternalIdentifierExtensionG": {
+          "title": "afacExternalIdentifierExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "FacilityG": {
+      "title": "FacilityG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiElectricChargingPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingPoint"
+        },
+        "aegiEnergyInfrastructureStation": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureStation"
+        },
+        "aegiEnergyInfrastructureSite": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureSite"
+        }
+      }
+    },
+    "FacilityObjectG": {
+      "title": "FacilityObjectG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiDedicatedParkingSpaces": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/DedicatedParkingSpaces"
+        },
+        "aegiElectricChargingPoint": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingPoint"
+        },
+        "aegiEnergyInfrastructureStation": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureStation"
+        },
+        "aegiEnergyInfrastructureSite": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureSite"
+        },
+        "afacSupplementalServiceFacility": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalServiceFacility"
+        },
+        "afacSupplementalEquipment": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalEquipment"
+        },
+        "aegiElectricChargingEquipment": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingEquipment"
+        }
+      }
+    },
+    "Image": {
+      "title": "Image",
+      "description": "An image, with encoded data and identification of format",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "imageData": {
+          "title": "imageData",
+          "description": "Encoded image data",
+          "$ref": "DATEXII_3_Common.json#/definitions/Base64Binary"
+        },
+        "imageFormat": {
+          "title": "imageFormat",
+          "description": "Identifies the image format of the associated image data",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ImageFormatEnumG"
+        },
+        "afacImageExtensionG": {
+          "title": "afacImageExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "imageData",
+        "imageFormat"
+      ]
+    },
+    "ImageFormatEnum": {
+      "title": "ImageFormatEnum",
+      "description": "Identifies an image format",
+      "type": "string",
+      "enum": [
+        "bmp",
+        "gif",
+        "jpeg",
+        "png",
+        "extendedG"
+      ]
+    },
+    "ImageFormatEnumG": {
+      "title": "ImageFormatEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ImageFormatEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "MeansOfPaymentEnum": {
+      "title": "MeansOfPaymentEnum",
+      "description": "Means of payment",
+      "type": "string",
+      "enum": [
+        "paymentCreditCard",
+        "cashBillsOnly",
+        "cashCoinsOnly",
+        "tollTag",
+        "mobileAccount",
+        "cashCoinsAndBills",
+        "prepay",
+        "paymentDebitCard",
+        "paymentValueCard",
+        "nfc",
+        "emv",
+        "qrCode",
+        "website",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "MeansOfPaymentEnumG": {
+      "title": "MeansOfPaymentEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/MeansOfPaymentEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OpenAllHours": {
+      "title": "OpenAllHours",
+      "description": "Open or available all the time (24/7)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOpenAllHoursExtensionG": {
+          "title": "afacOpenAllHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "OperatingHoursByReference": {
+      "title": "OperatingHoursByReference",
+      "description": "Operating hours information that is addressed via a reference.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingHoursReference": {
+          "title": "operatingHoursReference",
+          "description": "The reference to an operating hours specification.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursSpecificationVersionedReferenceG"
+        },
+        "operatingHoursTableReference": {
+          "title": "operatingHoursTableReference",
+          "description": "Operation hours table in question defined by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursTableVersionedReferenceG"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOperatingHoursByReferenceExtensionG": {
+          "title": "afacOperatingHoursByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingHoursReference"
+      ]
+    },
+    "OperatingHoursG": {
+      "title": "OperatingHoursG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacOperatingHoursSpecification": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursSpecification"
+        },
+        "afacUnknownOperatingHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UnknownOperatingHours"
+        },
+        "afacOperatingHoursByReference": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursByReference"
+        },
+        "afacOpenAllHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpenAllHours"
+        },
+        "afacUndefinedOperatingHours": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UndefinedOperatingHours"
+        }
+      }
+    },
+    "OperatingHoursSpecification": {
+      "title": "OperatingHoursSpecification",
+      "description": "A specification of operating hours (e.g. for a parking site, a service facility, an access or the availability for equipment).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "label": {
+          "title": "label",
+          "description": "A label, name or identifier for this operating hours specification.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "operatingAllYear": {
+          "title": "operatingAllYear",
+          "description": "The facility or organisation is not closed on a seasonal base.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "urlLinkAddress": {
+          "title": "urlLinkAddress",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "description": "The specification of operating hours by an overall period combined with valid or exceptional periods.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOperatingHoursSpecificationExtensionG": {
+          "title": "afacOperatingHoursSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "overallPeriod"
+      ]
+    },
+    "OperatingHoursSpecificationVersionedReferenceG": {
+      "title": "OperatingHoursSpecificationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursSpecification"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OperatingHoursTableVersionedReferenceG": {
+      "title": "OperatingHoursTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OrganisationByReference": {
+      "title": "OrganisationByReference",
+      "description": "Organisation information that is based on a reference",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "organisationReference": {
+          "title": "organisationReference",
+          "description": "Organisation information provided by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ReferenceableOrganisationVersionedReferenceG"
+        },
+        "organisationTableReference": {
+          "title": "organisationTableReference",
+          "description": "Organisation table in question defined by a reference.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationTableVersionedReferenceG"
+        },
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacOrganisationByReferenceExtensionG": {
+          "title": "afacOrganisationByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "organisationReference"
+      ]
+    },
+    "OrganisationG": {
+      "title": "OrganisationG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacAnOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AnOrganisation"
+        },
+        "afacReferenceableOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ReferenceableOrganisation"
+        },
+        "afacUndefinedOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UndefinedOrganisation"
+        },
+        "afacUnknownOrganisation": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UnknownOrganisation"
+        },
+        "afacOrganisationByReference": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationByReference"
+        }
+      }
+    },
+    "OrganisationTableVersionedReferenceG": {
+      "title": "OrganisationTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OrganisationTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OrganisationTypeEnum": {
+      "title": "OrganisationTypeEnum",
+      "description": "Type of organisation.",
+      "type": "string",
+      "enum": [
+        "publicSector",
+        "privateSector",
+        "extendedG"
+      ]
+    },
+    "OrganisationTypeEnumG": {
+      "title": "OrganisationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OrganisationUnit": {
+      "title": "OrganisationUnit",
+      "description": "A unit within the organisation, which has got seperate location, operating hours, address and/or contacts.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "A name for this organisation unit",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "function": {
+          "title": "function",
+          "description": "Functions this unit is responsible for or a specific type, e.g. headquarter or sales",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "contactInformation": {
+          "title": "contactInformation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ContactInformationG"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "afacOrganisationUnitExtensionG": {
+          "title": "afacOrganisationUnitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Information on payment possibilities.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paymentMode": {
+          "title": "paymentMode",
+          "description": "Defines the timing of the parking or other mobility related payment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/PaymentModeEnumG"
+          },
+          "minItems": 0
+        },
+        "paymentMeans": {
+          "title": "paymentMeans",
+          "description": "The means of payment available",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/MeansOfPaymentEnumG"
+          },
+          "minItems": 0
+        },
+        "otherPaymentMeans": {
+          "title": "otherPaymentMeans",
+          "description": "Other means of payment that are available.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "brandsAccepted": {
+          "title": "brandsAccepted",
+          "description": "Accepted brands for payment cards.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/PaymentBrandsEnumG"
+          },
+          "minItems": 0
+        },
+        "otherBrandsAccepted": {
+          "title": "otherBrandsAccepted",
+          "description": "Further accepted brands for payment cards.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "afacPaymentExtensionG": {
+          "title": "afacPaymentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PaymentBrandsEnum": {
+      "title": "PaymentBrandsEnum",
+      "description": "Brands for payment cards",
+      "type": "string",
+      "enum": [
+        "americanExpress",
+        "applePay",
+        "cirrus",
+        "dinersClub",
+        "discoverCard",
+        "giroCard",
+        "maestro",
+        "masterCard",
+        "visa",
+        "vpay",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PaymentBrandsEnumG": {
+      "title": "PaymentBrandsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/PaymentBrandsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PaymentModeEnum": {
+      "title": "PaymentModeEnum",
+      "description": "Details of when payment is required.",
+      "type": "string",
+      "enum": [
+        "prepay",
+        "payOnEntry",
+        "payPriorToExit",
+        "payAndExit",
+        "payAfterExit",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PaymentModeEnumG": {
+      "title": "PaymentModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/PaymentModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ReferenceableOrganisation": {
+      "title": "ReferenceableOrganisation",
+      "description": "A versioned identifiable organisation that can be referenced.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "legalName": {
+          "title": "legalName",
+          "description": "The legal name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "linkToGeneralInformation": {
+          "title": "linkToGeneralInformation",
+          "description": "An internet address from where further relevant information about this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "linkToLogo": {
+          "title": "linkToLogo",
+          "description": "An internet address from where the logo of this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "linkToWebform": {
+          "title": "linkToWebform",
+          "description": "An internet address pointing to a webform, which people can use to send messages to this organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "available24hours": {
+          "title": "available24hours",
+          "description": "Specifies if the availability is 24 hours a day. If omitted, this information is unknown or heterogeneous.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "responsibility": {
+          "title": "responsibility",
+          "description": "Specification of services or other duties the organisation is responsible for.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "publishingAgreement": {
+          "title": "publishingAgreement",
+          "description": "Indication whether the organisation accepted publishing its information.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "type": {
+          "title": "type",
+          "description": "Information whether the organisation in question belongs to the public or private sector.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationTypeEnumG"
+        },
+        "nationalOrganisationNumber": {
+          "title": "nationalOrganisationNumber",
+          "description": "The national organisation number in the specified national register, if applicable.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "nationalRegister": {
+          "title": "nationalRegister",
+          "description": "A national register where the organisation is registered.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "vatIdentificationNumber": {
+          "title": "vatIdentificationNumber",
+          "description": "The VAT identification number of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "organisationUnit": {
+          "title": "organisationUnit",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationUnit"
+          },
+          "minItems": 0
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "subOrganisation": {
+          "title": "subOrganisation",
+          "description": "An organisation that is subordinated to its parent organisation, defined likewise by the Organisation model structure.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacAnOrganisationExtensionG": {
+          "title": "afacAnOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacReferenceableOrganisationExtensionG": {
+          "title": "afacReferenceableOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "name"
+      ]
+    },
+    "ReferenceableOrganisationVersionedReferenceG": {
+      "title": "ReferenceableOrganisationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ReferenceableOrganisation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "ReservationTypeEnum": {
+      "title": "ReservationTypeEnum",
+      "description": "Different types of reservation.",
+      "type": "string",
+      "enum": [
+        "optional",
+        "mandatory",
+        "notAvailable",
+        "partly",
+        "unknown",
+        "unspecified",
+        "extendedG"
+      ]
+    },
+    "ReservationTypeEnumG": {
+      "title": "ReservationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ReservationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ServiceFacilityTypeEnum": {
+      "title": "ServiceFacilityTypeEnum",
+      "description": "A service facility. In distinction to equipment, a service is usually manned.",
+      "type": "string",
+      "enum": [
+        "bikeGarage",
+        "bikeSharing",
+        "cafe",
+        "carWash",
+        "cateringService",
+        "docstop",
+        "foodShopping",
+        "hotel",
+        "kiosk",
+        "laundry",
+        "leisureActivities",
+        "medicalFacility",
+        "motel",
+        "motorcycleGarage",
+        "motorwayRestaurant",
+        "motorwayRestaurantSmall",
+        "overnightAccommodation",
+        "petrolStation",
+        "pharmacy",
+        "payDesk",
+        "police",
+        "restaurant",
+        "restaurantSelfService",
+        "shop",
+        "snackBar",
+        "sparePartsShopping",
+        "touristInformation",
+        "truckRepair",
+        "truckWash",
+        "tyreRepair",
+        "vehicleMaintenance",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ServiceFacilityTypeEnumG": {
+      "title": "ServiceFacilityTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ServiceFacilityTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SquareMetres": {
+      "title": "SquareMetres",
+      "description": "A value of area expressed in units of square metres.",
+      "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+    },
+    "SupplementalEquipment": {
+      "title": "SupplementalEquipment",
+      "description": "One type of  supplemental equipment, which is available on some site, for example on a rest area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "alias": {
+          "title": "alias",
+          "description": "An alternative name for this facility.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "accessibility": {
+          "title": "accessibility",
+          "description": "Information on accessibility and facilities for persons with disabilities.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AccessibilityEnumG"
+          },
+          "minItems": 0
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Some additional information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "availability": {
+          "title": "availability",
+          "description": "Specifies whether the supplemental facility is available or not. Note that this is no dynamic information!",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AvailabilityEnumG"
+        },
+        "quantity": {
+          "title": "quantity",
+          "description": "Number of the supplemental facility (e.g. number of toilets, restaurants, park & ride places, etc.) with respect to given restrictions. Dynamic overridable.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "regularlyCleaned": {
+          "title": "regularlyCleaned",
+          "description": "Indicates whether the supplemental facility is cleaned on a regular basis.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "applicableForUser": {
+          "title": "applicableForUser",
+          "description": "Limitation to a set of special users.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UserTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "nearby": {
+          "title": "nearby",
+          "description": "If true, the Supplemental Facility is not located on the site of the orignal facility but nearby. They must not necessarly belong together.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "equipmentType": {
+          "title": "equipmentType",
+          "description": "One type of equipment.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/EquipmentTypeEnumG"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "informationWebsite": {
+          "title": "informationWebsite",
+          "description": "URL of some internet site with additional information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/UrlLink"
+          },
+          "minItems": 0
+        },
+        "photoUrl": {
+          "title": "photoUrl",
+          "description": "Specifies a URL at which a photo of the facility or its surrounding can be found.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/UrlLink"
+          },
+          "minItems": 0
+        },
+        "photo": {
+          "title": "photo",
+          "description": "A binary photo of the facility or its surrounding.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/Image"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "owner": {
+          "title": "owner",
+          "description": "The owner of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "The operator of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+        },
+        "helpdesk": {
+          "title": "helpdesk",
+          "description": "A helpdesk service for the facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+        },
+        "applicableForVehicles": {
+          "title": "applicableForVehicles",
+          "description": "A set of vehicles, for which this facility is appropriate, specified by its characteristics.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "dimension": {
+          "title": "dimension",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/Dimension"
+        },
+        "amenities": {
+          "title": "amenities",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/Amenities"
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacSupplementalFacilityExtensionG": {
+          "title": "afacSupplementalFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacSupplementalEquipmentExtensionG": {
+          "title": "afacSupplementalEquipmentExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "equipmentType"
+      ]
+    },
+    "SupplementalFacilityG": {
+      "title": "SupplementalFacilityG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "afacSupplementalServiceFacility": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalServiceFacility"
+        },
+        "afacSupplementalEquipment": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalEquipment"
+        },
+        "aegiElectricChargingEquipment": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingEquipment"
+        }
+      }
+    },
+    "SupplementalServiceFacility": {
+      "title": "SupplementalServiceFacility",
+      "description": "One type of supplemental service facility. You can specify the number of this service facility type (e.g. 5 restaurants) as well as the number of subitems (e.g. 200 restaurant places).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "alias": {
+          "title": "alias",
+          "description": "An alternative name for this facility.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "accessibility": {
+          "title": "accessibility",
+          "description": "Information on accessibility and facilities for persons with disabilities.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AccessibilityEnumG"
+          },
+          "minItems": 0
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Some additional information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "availability": {
+          "title": "availability",
+          "description": "Specifies whether the supplemental facility is available or not. Note that this is no dynamic information!",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AvailabilityEnumG"
+        },
+        "quantity": {
+          "title": "quantity",
+          "description": "Number of the supplemental facility (e.g. number of toilets, restaurants, park & ride places, etc.) with respect to given restrictions. Dynamic overridable.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "regularlyCleaned": {
+          "title": "regularlyCleaned",
+          "description": "Indicates whether the supplemental facility is cleaned on a regular basis.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "applicableForUser": {
+          "title": "applicableForUser",
+          "description": "Limitation to a set of special users.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UserTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "nearby": {
+          "title": "nearby",
+          "description": "If true, the Supplemental Facility is not located on the site of the orignal facility but nearby. They must not necessarly belong together.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "serviceFacilityType": {
+          "title": "serviceFacilityType",
+          "description": "One type of service.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ServiceFacilityTypeEnumG"
+        },
+        "numberOfSubitems": {
+          "title": "numberOfSubitems",
+          "description": "The quantity of subitems to this service facility type, e.g. the total number of restaurant places or fuel dispensers etc.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "distanceFromOriginFacility": {
+          "title": "distanceFromOriginFacility",
+          "description": "Approximate distance (given in metres) between this supplemental facility and some origin facility to which it is clearly related (typically a larger facility, e.g. a parking site).",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsNonNegativeInteger"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ExternalIdentifier"
+          },
+          "minItems": 0
+        },
+        "informationWebsite": {
+          "title": "informationWebsite",
+          "description": "URL of some internet site with additional information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/UrlLink"
+          },
+          "minItems": 0
+        },
+        "photoUrl": {
+          "title": "photoUrl",
+          "description": "Specifies a URL at which a photo of the facility or its surrounding can be found.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/UrlLink"
+          },
+          "minItems": 0
+        },
+        "photo": {
+          "title": "photo",
+          "description": "A binary photo of the facility or its surrounding.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/Image"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "owner": {
+          "title": "owner",
+          "description": "The owner of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "The operator of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+        },
+        "helpdesk": {
+          "title": "helpdesk",
+          "description": "A helpdesk service for the facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OrganisationG"
+        },
+        "applicableForVehicles": {
+          "title": "applicableForVehicles",
+          "description": "A set of vehicles, for which this facility is appropriate, specified by its characteristics.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "dimension": {
+          "title": "dimension",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/Dimension"
+        },
+        "amenities": {
+          "title": "amenities",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/Amenities"
+        },
+        "afacFacilityObjectExtensionG": {
+          "title": "afacFacilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacSupplementalFacilityExtensionG": {
+          "title": "afacSupplementalFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacSupplementalServiceFacilityExtensionG": {
+          "title": "afacSupplementalServiceFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "serviceFacilityType"
+      ]
+    },
+    "TimeZone": {
+      "title": "TimeZone",
+      "description": "Identifies a time zone by specifying the difference to UTC in hours and minutes, as defined in ISO 8601.",
+      "$ref": "DATEXII_3_Common.json#/definitions/String"
+    },
+    "TypeOfIdentifierEnum": {
+      "title": "TypeOfIdentifierEnum",
+      "description": "An empty enumeration, which should be project-specifically extended to provide type of external identifiers.",
+      "type": "string",
+      "enum": [
+        "extendedG"
+      ]
+    },
+    "TypeOfIdentifierEnumExtensionTypeG": {
+      "title": "TypeOfIdentifierEnumExtensionTypeG",
+      "type": "string",
+      "enum": [
+        "evseId",
+        "stationIdBNetzA",
+        "operatorIdBNetzA",
+        "operatorId",
+        "providerId"
+      ]
+    },
+    "TypeOfIdentifierEnumG": {
+      "title": "TypeOfIdentifierEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/TypeOfIdentifierEnum"
+        },
+        "extendedValueG": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/TypeOfIdentifierEnumExtensionTypeG"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "UndefinedOperatingHours": {
+      "title": "UndefinedOperatingHours",
+      "description": "There are no operating hours specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacUndefinedOperatingHoursExtensionG": {
+          "title": "afacUndefinedOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UndefinedOrganisation": {
+      "title": "UndefinedOrganisation",
+      "description": "The organisation for the specified association end (within the specified validity if applicable) is not defined.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacUndefinedOrganisationExtensionG": {
+          "title": "afacUndefinedOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownOperatingHours": {
+      "title": "UnknownOperatingHours",
+      "description": "The operating hours are not known.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/ClosureInformation"
+        },
+        "afacOperatingHoursExtensionG": {
+          "title": "afacOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacUnknownOperatingHoursExtensionG": {
+          "title": "afacUnknownOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownOrganisation": {
+      "title": "UnknownOrganisation",
+      "description": "The organisation for the specified association end (within the specified validity if applicable) is unknown.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generalTimeValidity": {
+          "title": "generalTimeValidity",
+          "description": "Specification of a time validity, for which this organisation information is valid in general. This is not a specification of the operating hours as such.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "afacOrganisationExtensionG": {
+          "title": "afacOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacUnknownOrganisationExtensionG": {
+          "title": "afacUnknownOrganisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UserTypeEnum": {
+      "title": "UserTypeEnum",
+      "description": "Types of different users, for example used in the context of parking.",
+      "type": "string",
+      "enum": [
+        "allUsers",
+        "commuters",
+        "customers",
+        "elderlyUsers",
+        "employees",
+        "families",
+        "personsWithDisabilities",
+        "hearingImpaired",
+        "hotelGuests",
+        "longTermParkers",
+        "members",
+        "men",
+        "overnightParkers",
+        "parkAndCycleUser",
+        "parkAndRideUsers",
+        "parkAndWalkUser",
+        "pensioners",
+        "pregnantPerson",
+        "registeredDisabledUsers",
+        "reservationHolders",
+        "residents",
+        "seasonTicketHolders",
+        "shoppers",
+        "shortTermParkers",
+        "sportEventAwaySupporters",
+        "sportEventHomeSupporters",
+        "students",
+        "staff",
+        "subscribers",
+        "visitors",
+        "visuallyImpaired",
+        "wheelchairUsers",
+        "women",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "UserTypeEnumG": {
+      "title": "UserTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/UserTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

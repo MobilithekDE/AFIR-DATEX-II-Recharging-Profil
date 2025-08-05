@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "Address": {
+      "title": "Address",
+      "description": "A street oriented addressing structure supporting delivery",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "postcode": {
+          "title": "postcode",
+          "description": "Postcode or postal code for the address.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "city": {
+          "title": "city",
+          "description": "Postal city name of the address.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "countryCode": {
+          "title": "countryCode",
+          "description": "EN ISO 3166-1 two-character country code.",
+          "$ref": "DATEXII_3_Common.json#/definitions/CountryCode"
+        },
+        "addressLine": {
+          "title": "addressLine",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationExtension.json#/definitions/AddressLine"
+          },
+          "minItems": 0
+        },
+        "locxAddressExtensionG": {
+          "title": "locxAddressExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "AddressLine": {
+      "title": "AddressLine",
+      "description": "A class defining information concerning one line of a postal address.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "order": {
+          "title": "order",
+          "description": "The sequence order that the address line element should be displayed in",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "type": {
+          "title": "type",
+          "description": "The type for the address line element",
+          "$ref": "DATEXII_3_LocationExtension.json#/definitions/AddressLineTypeEnumG"
+        },
+        "text": {
+          "title": "text",
+          "description": "Free-text description for the address line element",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "locxAddressLineExtensionG": {
+          "title": "locxAddressLineExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "order",
+        "type",
+        "text"
+      ]
+    },
+    "AddressLineTypeEnum": {
+      "title": "AddressLineTypeEnum",
+      "description": "A list of supported address line types.",
+      "type": "string",
+      "enum": [
+        "apartment",
+        "building",
+        "poBox",
+        "unit",
+        "region",
+        "town",
+        "districtTerritory",
+        "floor",
+        "street",
+        "houseNumber",
+        "generalTextLine",
+        "extendedG"
+      ]
+    },
+    "AddressLineTypeEnumG": {
+      "title": "AddressLineTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_LocationExtension.json#/definitions/AddressLineTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "FacilityLocation": {
+      "title": "FacilityLocation",
+      "description": "A location for which a time zone and an address can be specified",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeZone": {
+          "title": "timeZone",
+          "description": "The time zone the facility is located in.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/TimeZone"
+        },
+        "address": {
+          "title": "address",
+          "description": "An address specification following ISO 19160-4.",
+          "$ref": "DATEXII_3_LocationExtension.json#/definitions/Address"
+        },
+        "nutsArea": {
+          "title": "nutsArea",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationExtension.json#/definitions/NutsArea"
+          },
+          "minItems": 0
+        }
+      }
+    },
+    "NutsArea": {
+      "title": "NutsArea",
+      "description": "The NUTS-Code representation for the area (Nomenclature of territorial units for statistics) or its LAU code representation (Local Administrative Unit).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nutsCodeType": {
+          "title": "nutsCodeType",
+          "description": "The NUTS code type for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsCodeTypeEnumG"
+        },
+        "nutsCode": {
+          "title": "nutsCode",
+          "description": "The NUTS code for the named area.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/NutsCode"
+        },
+        "locxNutsAreaExtensionG": {
+          "title": "locxNutsAreaExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "nutsCodeType",
+        "nutsCode"
+      ]
+    }
+  }
+}

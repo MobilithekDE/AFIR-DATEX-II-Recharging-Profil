@@ -1,0 +1,841 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "ElectricChargingPointStatus": {
+      "title": "ElectricChargingPointStatus",
+      "description": "Dynamic information on the status of the charging point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "status": {
+          "title": "status",
+          "description": "Status of the refill point",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatusEnumG"
+        },
+        "unitsInStock": {
+          "title": "unitsInStock",
+          "description": "Amount of delivery units still in stock (with delivery units as defined in the static information model)",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/Units"
+        },
+        "remainingChargingTime": {
+          "title": "remainingChargingTime",
+          "description": "If known, the approximate remaining charging time for the current vehicle on this refill point can be specified.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "currentVoltage": {
+          "title": "currentVoltage",
+          "description": "Currently used voltage.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/Volt"
+        },
+        "currentChargingPower": {
+          "title": "currentChargingPower",
+          "description": "The current power in watts.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/Watt"
+        },
+        "nextAvailableChargingSlots": {
+          "title": "nextAvailableChargingSlots",
+          "description": "One or more points of time in the future, at which the charging point will be available (not occupied and not reserved).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+          },
+          "minItems": 0
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "supplementalFacilityStatus": {
+          "title": "supplementalFacilityStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalFacilityStatus"
+          },
+          "minItems": 0
+        },
+        "energyRateUpdate": {
+          "title": "energyRateUpdate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyRateUpdate"
+          },
+          "minItems": 0
+        },
+        "waitingTime": {
+          "title": "waitingTime",
+          "description": "Estimated waiting time for customers without reservation",
+          "$ref": "DATEXII_3_CommonExtension.json#/definitions/DurationValue"
+        },
+        "plannedRefillPointStatus": {
+          "title": "plannedRefillPointStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/PlannedRefillPointStatus"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "aegiRefillPointStatusExtensionG": {
+          "title": "aegiRefillPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "aegiElectricChargingPointStatusExtensionG": {
+          "title": "aegiElectricChargingPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference",
+        "status"
+      ]
+    },
+    "EnergyBasedApplicability": {
+      "title": "EnergyBasedApplicability",
+      "description": "Price is only valid within the given charging boundaries in kWh.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fromKWh": {
+          "title": "fromKWh",
+          "description": "Price is valid from the given amount of kWh.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "toKWh": {
+          "title": "toKWh",
+          "description": "Price is valid up to the given amount of kWh.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "aegiEnergyBasedApplicabilityExtensionG": {
+          "title": "aegiEnergyBasedApplicabilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "EnergyInfrastructureSiteStatus": {
+      "title": "EnergyInfrastructureSiteStatus",
+      "description": "Dynamic information on the status of the energy supplying site",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "availableCarParkingPlaces": {
+          "title": "availableCarParkingPlaces",
+          "description": "Parking places available for cars.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "availableTruckParkingPlaces": {
+          "title": "availableTruckParkingPlaces",
+          "description": "Parking places available for trucks.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "supplementalFacilityStatus": {
+          "title": "supplementalFacilityStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalFacilityStatus"
+          },
+          "minItems": 0
+        },
+        "energyInfrastructureStationStatus": {
+          "title": "energyInfrastructureStationStatus",
+          "description": "Specify the status of a charging station with dynamic information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureStationStatus"
+          },
+          "minItems": 0
+        },
+        "serviceType": {
+          "title": "serviceType",
+          "description": "The service type for the site. If no period is given, the currently available service is meant.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ServiceType"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureSiteStatusExtensionG": {
+          "title": "aegiEnergyInfrastructureSiteStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "EnergyInfrastructureStationStatus": {
+      "title": "EnergyInfrastructureStationStatus",
+      "description": "Dynamic information on the status of the station.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "isAvailable": {
+          "title": "isAvailable",
+          "description": "Information whether the specific station is available or not. It might be unavailable for example because of a fault, damage or maintenance. It does not inform, if the corresponding refill points are currently occupied or not.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "supplementalFacilityStatus": {
+          "title": "supplementalFacilityStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalFacilityStatus"
+          },
+          "minItems": 0
+        },
+        "refillPointStatus": {
+          "title": "refillPointStatus",
+          "description": "Specify the status of a refill point with dynamic information.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatusG"
+          },
+          "minItems": 0
+        },
+        "serviceType": {
+          "title": "serviceType",
+          "description": "The service type for the station. If no period is given, the currently available service is meant.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ServiceType"
+          },
+          "minItems": 0
+        },
+        "energyRateUpdate": {
+          "title": "energyRateUpdate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyRateUpdate"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureStationStatusExtensionG": {
+          "title": "aegiEnergyInfrastructureStationStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference"
+      ]
+    },
+    "EnergyInfrastructureStatusPublication": {
+      "title": "EnergyInfrastructureStatusPublication",
+      "description": "Dynamic information on the status of energy supplying sites.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Language"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "tableReference": {
+          "title": "tableReference",
+          "description": "Reference to static tables containing the sites referenced in this publication.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureTableVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/definitions/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/definitions/HeaderInformation"
+        },
+        "energyInfrastructureSiteStatus": {
+          "title": "energyInfrastructureSiteStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyInfrastructureSiteStatus"
+          },
+          "minItems": 0
+        },
+        "comPayloadPublicationExtensionG": {
+          "title": "comPayloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "aegiEnergyInfrastructureStatusPublicationExtensionG": {
+          "title": "aegiEnergyInfrastructureStatusPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator"
+      ]
+    },
+    "EnergyInfrastructureTableVersionedReferenceG": {
+      "title": "EnergyInfrastructureTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "EnergyInfrastructureTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "EnergyPrice": {
+      "title": "EnergyPrice",
+      "description": "Price definition for energy refueling. All prices belonging to one rate are applied within their applicability (\"AND\"). They are NOT different alternatives (\"OR\").",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "priceType": {
+          "title": "priceType",
+          "description": "The type of price for the energy supply",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/PriceTypeEnumG"
+        },
+        "value": {
+          "title": "value",
+          "description": "The price for the energy according to the price type",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AmountOfMoney"
+        },
+        "priceCap": {
+          "title": "priceCap",
+          "description": "An upper cap for this price which will be charged at maximum.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/AmountOfMoney"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Free text field for additional information regarding the price.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "timeBasedApplicability": {
+          "title": "timeBasedApplicability",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/TimeBasedApplicability"
+        },
+        "energyBasedApplicability": {
+          "title": "energyBasedApplicability",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyBasedApplicability"
+        },
+        "aegiEnergyPriceExtensionG": {
+          "title": "aegiEnergyPriceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "priceType",
+        "value"
+      ]
+    },
+    "EnergyRateReferenceG": {
+      "title": "EnergyRateReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "EnergyRate"
+        },
+        "idG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "EnergyRateUpdate": {
+      "title": "EnergyRateUpdate",
+      "description": "Updates a rate defined in the static part of the model.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "energyRateReference": {
+          "title": "energyRateReference",
+          "description": "Specifies the EnergyRate that is updated here.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyRateReferenceG"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "Free text field for additional information regarding the energy rates.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "energyPrice": {
+          "title": "energyPrice",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyPrice"
+          },
+          "minItems": 0
+        },
+        "aegiEnergyRateUpdateExtensionG": {
+          "title": "aegiEnergyRateUpdateExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lastUpdated",
+        "energyRateReference"
+      ]
+    },
+    "PlannedRefillPointStatus": {
+      "title": "PlannedRefillPointStatus",
+      "description": "Planned status information for a refill point, for example reservatons",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "title": "status",
+          "description": "Status of the refill point",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatusEnumG"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "aegiPlannedRefillPointStatusExtensionG": {
+          "title": "aegiPlannedRefillPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "status",
+        "overallPeriod"
+      ]
+    },
+    "PriceTypeEnum": {
+      "title": "PriceTypeEnum",
+      "description": "The type of price for energy.",
+      "type": "string",
+      "enum": [
+        "pricePerMinute",
+        "pricePerKWh",
+        "basePrice",
+        "flatRate",
+        "free",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PriceTypeEnumG": {
+      "title": "PriceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/PriceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RefillPointStatus": {
+      "title": "RefillPointStatus",
+      "description": "Dynamic information on the status of the refill point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "title": "reference",
+          "description": "Reference to the corresponding static facility object.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/FacilityObjectVersionedReferenceG"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "openingStatus": {
+          "title": "openingStatus",
+          "description": "The opening status of this facility (open or not).",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OpeningStatusEnumG"
+        },
+        "operationStatus": {
+          "title": "operationStatus",
+          "description": "The operation status of this facility.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperationStatusEnumG"
+        },
+        "regularOperatingHoursInForce": {
+          "title": "regularOperatingHoursInForce",
+          "description": "If true, regular operating hours are in force (can be open or closed).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "statusDescription": {
+          "title": "statusDescription",
+          "description": "A description for the status of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "status": {
+          "title": "status",
+          "description": "Status of the refill point",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatusEnumG"
+        },
+        "unitsInStock": {
+          "title": "unitsInStock",
+          "description": "Amount of delivery units still in stock (with delivery units as defined in the static information model)",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/Units"
+        },
+        "newOperatingHours": {
+          "title": "newOperatingHours",
+          "description": "Overrides the operating hours information specified in the static part either with a new reference or with a new defined version. An existing version should not be changed.",
+          "$ref": "DATEXII_3_AfirFacilities.json#/definitions/OperatingHoursG"
+        },
+        "fault": {
+          "title": "fault",
+          "$ref": "DATEXII_3_Common.json#/definitions/Fault"
+        },
+        "supplementalFacilityStatus": {
+          "title": "supplementalFacilityStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirFacilities.json#/definitions/SupplementalFacilityStatus"
+          },
+          "minItems": 0
+        },
+        "energyRateUpdate": {
+          "title": "energyRateUpdate",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/EnergyRateUpdate"
+          },
+          "minItems": 0
+        },
+        "waitingTime": {
+          "title": "waitingTime",
+          "description": "Estimated waiting time for customers without reservation",
+          "$ref": "DATEXII_3_CommonExtension.json#/definitions/DurationValue"
+        },
+        "plannedRefillPointStatus": {
+          "title": "plannedRefillPointStatus",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/PlannedRefillPointStatus"
+          },
+          "minItems": 0
+        },
+        "afacFacilityObjectStatusExtensionG": {
+          "title": "afacFacilityObjectStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "afacFacilityStatusExtensionG": {
+          "title": "afacFacilityStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "aegiRefillPointStatusExtensionG": {
+          "title": "aegiRefillPointStatusExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "reference",
+        "status"
+      ]
+    },
+    "RefillPointStatusEnum": {
+      "title": "RefillPointStatusEnum",
+      "description": "The status of a refill point.",
+      "type": "string",
+      "enum": [
+        "available",
+        "blocked",
+        "charging",
+        "faulted",
+        "inoperative",
+        "occupied",
+        "outOfOrder",
+        "outOfStock",
+        "planned",
+        "removed",
+        "reserved",
+        "unavailable",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "RefillPointStatusEnumG": {
+      "title": "RefillPointStatusEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatusEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RefillPointStatusG": {
+      "title": "RefillPointStatusG",
+      "description": "Only one of the properties shall be used in an instance.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aegiRefillPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/RefillPointStatus"
+        },
+        "aegiElectricChargingPointStatus": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ElectricChargingPointStatus"
+        }
+      }
+    },
+    "ServiceType": {
+      "title": "ServiceType",
+      "description": "A specification of service types for the fuelling/charging and payment process",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "serviceType": {
+          "title": "serviceType",
+          "description": "Information on different service types for the fuelling/charging and payment process.",
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ServiceTypeEnumG"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "aegiServiceTypeExtensionG": {
+          "title": "aegiServiceTypeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "serviceType"
+      ]
+    },
+    "ServiceTypeEnum": {
+      "title": "ServiceTypeEnum",
+      "description": "A table of different service levels to be expected for fuelling/charging and payment.",
+      "type": "string",
+      "enum": [
+        "physicalAttendance",
+        "unattended",
+        "extendedG"
+      ]
+    },
+    "ServiceTypeEnumG": {
+      "title": "ServiceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_AfirEnergyInfrastructure.json#/definitions/ServiceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TimeBasedApplicability": {
+      "title": "TimeBasedApplicability",
+      "description": "Price is only valid within the given charging time boundaries in minutes.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fromMinute": {
+          "title": "fromMinute",
+          "description": "Price is valid from the given minute.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "toMinute": {
+          "title": "toMinute",
+          "description": "Price is valid up to the given minute.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "aegiTimeBasedApplicabilityExtensionG": {
+          "title": "aegiTimeBasedApplicabilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "Units": {
+      "title": "Units",
+      "description": "Amount in units, which are specified by unitTypeEnum.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "Volt": {
+      "title": "Volt",
+      "description": "Volt.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "Watt": {
+      "title": "Watt",
+      "description": "Watt.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    }
+  }
+}
