@@ -8,3 +8,4 @@ Nutzer und Passwort: datex
 <ins>Hinweise:</ins>
 
 * Die zweite Ladestation im beigefügten Beispiel ist nicht vollständig ausgearbeitet.
+* Eine englische Fassung wird in Kürze bereitgestellt
