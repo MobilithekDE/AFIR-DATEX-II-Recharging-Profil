@@ -8,4 +8,5 @@ Nutzer und Passwort: datex
 <ins>Hinweise:</ins>
 
 * Die zweite Ladestation im beigefügten Beispiel ist nicht vollständig ausgearbeitet.
-* Eine englische Fassung wird in Kürze bereitgestellt
+
+29.01.2026: Die Dokumentation wurde in Revision 1 bereitgestellt. Ab sofort ist die Angabe der beiden IDs der Bundesnetzagentur nicht mehr 'verpflichtend', sondern nur noch 'optional'. Eine Schema-Änderung war dafür nicht notwendig.
