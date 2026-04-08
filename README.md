@@ -3,4 +3,4 @@ Datenmodell für die Bereitstellung von Daten bzgl. Ladeinfrastruktur nach Artik
 
 [Version 01-00-00](https://github.com/MobilithekDE/AFIR-DATEX-II-Recharging-Profil/tree/main/Releases/Version%2001-00-00) ist jetzt verfügbar!
 
-Die Dokumentation wurde am 29.01.2026 in Revision 1 bereitgestellt.
+Bitte beachten: Die Dokumentation wurde am 08.04.2026 in Revision 2 bereitgestellt - dies erfordert ggf. Ihre Aktion.
